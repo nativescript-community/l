@@ -3,10 +3,21 @@
 [![npm](https://img.shields.io/npm/dm/nativescript-l.svg)](https://www.npmjs.com/package/nativescript-l)
 
 This is a plugin for NativeScript that implements internationalization (i18n) using the native capabilities
-of each platform. It is inspired from [nativescript-i18n](https://github.com/rborn/nativescript-i18n)
+of each platform. It is a direct fork of [nativescript-localize](https://github.com/EddyVerbruggen/nativescript-localize)
+
+## Differences
+This plugin was created to have a different behavior from [nativescript-localize](https://github.com/EddyVerbruggen/nativescript-localize):
+* the default `localize` method was renamed to `l`
+* the default `l` method tries to load from a local JSON object
+* you can load such a JSON object with `loadLocalJSON` passing either the JSON or the path to it
+* if no local JSON, `l` load natively
+* keys are not encoded anymore, meaning keys are the same in native/js worlds.
+* the locale JSON must now be a trully nested object (no `.` in keys names)
+* special characters support has been dropped in keys names.
+
 
 ## Credits
-A lot of thanks goes out to [Ludovic Fabrèges (@lfabreges)](https://github.com/lfabreges) for developing and maintaining this plugin in the past. When he had to abandon it due to shifted priorities, he was kind enough to [move the repo to me](https://github.com/EddyVerbruggen/nativescript-l/issues/73).
+A lot of thanks goes out to  [Eddy Verbruggen](https://github.com/EddyVerbruggen) and [Ludovic Fabrèges (@lfabreges)](https://github.com/lfabreges) for developing and maintaining [nativescript-localize](https://github.com/EddyVerbruggen/nativescript-localize).
 
 ## Table of contents
 * [Installation](#installation)
@@ -81,7 +92,7 @@ console.log(localize("Hello world !"));
 ```js
 const application = require("application");
 const localize = require("nativescript-l");
-application.setResources({ L: localize });
+application.setResources({ L: localize.l });
 ```
 
 #### Template
@@ -109,9 +120,9 @@ navigate to, then add this little hack to the 'page loaded' function of that new
 ### Vue
 #### app.js
 ```js
-import { localize } from "nativescript-l";
+import { l } from "nativescript-l";
 
-Vue.filter("L", localize);
+Vue.filter("L", l);
 ```
 
 #### Template
@@ -176,58 +187,18 @@ Keys starting with `ios.info.plist.` are used to localize iOS properties:
 ```
 
 ### How to change the language dynamically at runtime?
-This plugin uses the native capabilities of each platform, language selection is therefore made by the OS.
 
-## On iOS you can programmatically override this language since plugin version 4.2.0 by doing this:
+Seeing this module now uses JSON objects. Overriding consist of 3 steps:
+* overriding native language, done with `overrideLocaleNative`
+* overriding json language, done with `loadLocalJSON`
+* updating all labels, buttons.... your job!
+
 
 ```typescript
-import { overrideLocale } from "nativescript-l/localize";
-const localeOverriddenSuccessfully = overrideLocale("en-GB"); // or "nl-NL", etc (or even just the part before the hyphen)
+import { overrideLocaleNative } from "nativescript-l/localize";
+const localeOverriddenSuccessfully = overrideLocaleNative("en-GB"); // or "nl-NL", etc (or even just the part before the hyphen)
 ```
 
-## On Android you can programatically override this language since plugin version 4.2.1 by doing this:
-
-In your app.ts / main.ts / app.js
-
-```ts
-import { on, launchEvent } from '@nativescript/core/application';
-import { androidLaunchEventLocalizationHandler } from 'nativescript-l/localize';
-
-on(launchEvent, (args) => {
-  if (args.android) {
-    androidLaunchEventLocalizationHandler();
-  }
-});
-```
-
-And in your settings page where user chooses the language:
-
-```ts
-import { overrideLocale } from "nativescript-l/localize";
-const localeOverriddenSuccessfully = overrideLocale("en-GB"); // or "nl-NL", etc (or even just the part before the hyphen)
-```
-
-> **Important:** In both cases, after calling override Locale, you must ask the user to restart the app
-
-For Example:
-
-```ts
-import { android as _android } from '@nativescript/core/application';
-import { overrideLocale } from 'nativescript-l/localize';
-
-alert({
-  title: 'Switch Language',
-  message: 'The application needs to be restarted to change language',
-  okButtonText: 'Quit!'
-}).then(() => {
-  L.localize.overrideLocale(selectedLang);
-  if (isAndroid) {
-    _android.foregroundActivity.finish();
-  } else {
-    exit(0);
-  }
-});
-```
 
 > **Important:** In case you are using [Android app bundle](https://docs.nativescript.org/tooling/publishing/android-app-bundle) to release your android app, add this to
 > App_Resources/Android/app.gradle to make sure all lanugages are bundled in the split apks
@@ -253,13 +224,13 @@ import { device } from '@nativescript/core/platform';
 console.log("user's language is", device.language.split('-')[0]);
 ```
 
-> **Tip:** overrideLocale method stores the language in a special key in app-settings,
+> **Tip:** overrideLocaleNative method stores the language in a special key in app-settings,
 > you can access it like this,
 
 ```ts
 import { getString } from '@nativescript/core/application-settings'; 
 
-console.log(getString('__app__language__')); // only available after the first time you use overrideLocale(langName);
+console.log(getString('__app__language__')); // only available after the first time you use overrideLocaleNative(langName);
 ```
 
 ## Troubleshooting
