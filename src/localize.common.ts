@@ -2,7 +2,23 @@ import { File, knownFolders, path } from '@nativescript/core/file-system';
 import { vsprintf } from 'sprintf-js';
 
 let currentLocales = undefined;
-export function loadLocaleJSON(jsonFileOrData: string | object) {
+
+function flatten(obj: any) {
+    let newObj: any = {};
+    for (const key of Object.keys(obj)) {
+        if (typeof obj[key] !== null && typeof obj[key] === 'object') {
+            const subObj = flatten(obj[key]);
+            for (const subKey of Object.keys(subObj)) {
+                newObj[`${key}.${subKey}`] = subObj[subKey];
+            }
+        } else {
+            newObj[key] = obj[key];
+        }
+    }
+    return newObj;
+}
+
+export function loadLocaleJSON(jsonFileOrData: string | object, shouldFlatten = true) {
     if (typeof jsonFileOrData === 'string') {
         if (jsonFileOrData.indexOf('~/') === 0) {
             jsonFileOrData = path.join(knownFolders.currentApp().path, jsonFileOrData.replace('~/', ''));
@@ -14,30 +30,33 @@ export function loadLocaleJSON(jsonFileOrData: string | object) {
     } else if (typeof jsonFileOrData === 'object') {
         currentLocales = jsonFileOrData;
     }
+    if (shouldFlatten && currentLocales) {
+        currentLocales = flatten(currentLocales);
+    }
 }
 
 export let localizeNative = function(key: string, ...args: string[]): string {
     throw 'unimplemented';
 };
 
-function getNested(key: string, obj: object) {
-    if (obj[key]) {
-        obj = obj[key];
-    } else {
-        key.split('.').some(s => {
-            obj = obj[s];
-            return obj === undefined || obj === null;
-        });
-    }
-    if (Array.isArray(obj)) {
-        return obj.join('');
-    }
-    return obj as any;
-}
+// function getNested(key: string, obj: object) {
+//     if (obj[key]) {
+//         obj = obj[key];
+//     } else {
+//         key.split('.').some(s => {
+//             obj = obj[s];
+//             return obj === undefined || obj === null;
+//         });
+//     }
+//     if (Array.isArray(obj)) {
+//         return obj.join('');
+//     }
+//     return obj as any;
+// }
 
 export function l(key: string, ...args: string[]): string {
     if (currentLocales) {
-        return vsprintf(getNested(key, currentLocales) || key, args);
+        return vsprintf(currentLocales[key] || key, args);
     } else {
         return localizeNative(key, ...args);
     }
