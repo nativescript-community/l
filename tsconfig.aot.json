@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "include": [
-    "angular.ts"
+    "src/angular/index.ts"
   ],
   "angularCompilerOptions": {
     "skipTemplateCodegen": true

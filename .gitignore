@@ -62,9 +62,10 @@ report
 *.log
 /platforms
 /package-lock.json
-plugin/*.d.ts
+plugin/*.ts
 /plugin/typings
 /plugin/README.md
 /pnpm-lock.yaml
 *.aar
 /demo-vue/platforms
+plugin/angular/*.ts
