@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.3](https://github.com/lfabreges/nativescript-l/compare/v4.2.2...v4.2.3) (2020-02-21)
+
+
+### Bug Fixes
+
+* right now flatten the json locales for faster requests ([8af6e54](https://github.com/lfabreges/nativescript-l/commit/8af6e542ffcda3533db373162cf33adda667c4d4))
+
+
+
+
+
 ## [4.2.2](https://github.com/lfabreges/nativescript-l/compare/v4.1.1...v4.2.2) (2020-02-21)
 
 
