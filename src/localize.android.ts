@@ -1,38 +1,37 @@
-import { vsprintf } from "sprintf-js";
-import { android as _android } from "tns-core-modules/application";
-import { getString, setString } from "tns-core-modules/application-settings";
-import { isAndroid } from "tns-core-modules/platform";
-import * as utils from "tns-core-modules/utils/utils";
+import { vsprintf } from 'sprintf-js';
+import { android as _android } from '@nativescript/core/application';
+import { getString, setString } from '@nativescript/core/application-settings';
+import { isAndroid } from '@nativescript/core/platform';
+import * as utils from '@nativescript/core/utils/utils';
 
-import { encodeKey } from "./resource";
+export * from './localize.common';
 
 declare var java: any;
 
-const getResources = (function () {
-  let resources = null;
-  return function () {
-    if (resources === null) {
-      resources = utils.ad.getApplicationContext().getResources();
-    }
-    return resources;
-  };
+const getResources = (function() {
+    let resources = null;
+    return function() {
+        if (resources === null) {
+            resources = utils.ad.getApplicationContext().getResources();
+        }
+        return resources;
+    };
 })();
 
-export function localize(key: string, ...args: string[]): string {
-  let localizedString;
-  try {
-    const identifier = utils.ad.resources.getStringId(encodeKey(key));
-    localizedString = identifier === 0 ? key : getResources().getString(identifier);
-  } catch (error) {
-    localizedString = key;
-  }
-  return vsprintf(localizedString, args);
+export function localizeNative(key: string, ...args: string[]): string {
+    let localizedString;
+    try {
+        const identifier = utils.ad.resources.getStringId(key);
+        localizedString = identifier === 0 ? key : getResources().getString(identifier);
+    } catch (error) {
+        localizedString = key;
+    }
+    return vsprintf(localizedString, args);
 }
 
-export function androidLaunchEventLocalizationHandler() {
-  const lang = getString("__app__language__", 'none');
-  if (lang !== 'none' && isAndroid) {
-    const locale = new java.util.Locale(lang);
+
+export function overrideNativeLocale(lang: string): boolean {
+    const locale = new java.util.Locale(lang.substring(0, 2));
     java.util.Locale.setDefault(locale);
 
     const resources = _android.context.getResources();
@@ -40,10 +39,5 @@ export function androidLaunchEventLocalizationHandler() {
     configuration.locale = locale;
 
     resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-  }
-}
-
-export function overrideLocale(locale: string): boolean {
-  setString("__app__language__", locale.substring(0, 2));
-  return true;
+    return true;
 }

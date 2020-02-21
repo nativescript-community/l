@@ -1,4 +1,4 @@
-var localize = require("nativescript-localize");
+var localize = require("nativescript-l");
 var i18n = require("../i18n/en.default");
 
 describe("localize", () => {

@@ -1,6 +1,6 @@
 {
-  "name": "nativescript-localize-demo-angular",
-  "description": "nativescript-localize angular demo",
+  "name": "nativescript-l-demo-angular",
+  "description": "nativescript-l angular demo",
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
@@ -19,11 +19,11 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "nativescript-angular": "^7.2.2",
-    "nativescript-localize": "file:../src",
+    "nativescript-l": "file:../plugin",
     "nativescript-theme-core": "~1.0.4",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.3.3",
-    "tns-core-modules": "^5.2.1",
+    "@nativescript/core": "^5.2.1",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {

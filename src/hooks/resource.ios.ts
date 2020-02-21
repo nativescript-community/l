@@ -1,7 +1,5 @@
-import { convertStringSignToAtSign, convertPlaceholders } from "./placeholder";
-import { encodeKey, replace } from "./resource.common";
-
-export { encodeKey };
+import { convertStringSignToAtSign, convertPlaceholders } from "../placeholder";
+import { replace } from "./resource.common";
 
 export function encodeValue(value: string): string {
   return replace(

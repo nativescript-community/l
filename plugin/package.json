@@ -1,5 +1,5 @@
 {
-  "name": "nativescript-localize",
+  "name": "nativescript-l",
   "description": "Native internationalization plugin for NativeScript using native capabilities of each platform",
   "version": "4.2.1",
   "keywords": [
@@ -13,8 +13,8 @@
     "ios",
     "android"
   ],
-  "homepage": "https://github.com/lfabreges/nativescript-localize",
-  "bugs": "https://github.com/lfabreges/nativescript-localize/issues",
+  "homepage": "https://github.com/lfabreges/nativescript-l",
+  "bugs": "https://github.com/lfabreges/nativescript-l/issues",
   "license": "MIT",
   "author": {
     "name": "Ludovic Fabrèges",
@@ -34,11 +34,11 @@
       "email": "sp@shiv19.com"
     }
   ],
-  "main": "index.js",
-  "typings": "index.d.ts",
+  "main": "localize.js",
+  "typings": "localize.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lfabreges/nativescript-localize.git"
+    "url": "https://github.com/lfabreges/nativescript-l.git"
   },
   "scripts": {
     "compile": "tsc -p hooks && tsc && ngc -p tsconfig.aot.json",
@@ -52,20 +52,6 @@
     "shorthash": "0.0.2",
     "simple-plist": "^0.3.0",
     "sprintf-js": "^1.1.1"
-  },
-  "devDependencies": {
-    "@angular/compiler": "~7.0.0",
-    "@angular/compiler-cli": "~7.0.0",
-    "@angular/core": "~7.0.0",
-    "@types/mkdirp": "^0.5.1",
-    "@types/node": "^8.0.0",
-    "@types/sprintf-js": "^1.1.0",
-    "rxjs": "^6.3.3",
-    "tns-core-modules": "~5.4.3",
-    "tns-platform-declarations": "~5.4.3",
-    "tslint": "^5.8.0",
-    "typescript": "~3.1.6",
-    "zone.js": "^0.8.26"
   },
   "nativescript": {
     "platforms": {

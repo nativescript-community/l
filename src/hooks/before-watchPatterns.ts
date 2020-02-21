@@ -16,4 +16,5 @@ export = function (hookArgs: any) {
       });
     };
   }
+  return null;
 };

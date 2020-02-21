@@ -1,7 +1,7 @@
-import { convertPlaceholders } from "./placeholder";
-import { encodeKey, replace } from "./resource.common";
+import { convertPlaceholders } from "../placeholder";
+import { replace } from "./resource.common";
 
-export { encodeKey };
+// export { encodeKey };
 
 export function encodeValue(value: string): string {
   return '"' + replace(

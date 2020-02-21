@@ -3,7 +3,7 @@ import * as path from "path";
 
 import { ConverterCommon } from "./converter.common";
 import { DataProvider, I18nEntries, Languages } from "./data.provider";
-import { encodeKey, encodeValue } from "../resource.android";
+import { encodeValue } from "./resource.android";
 
 export class ConverterAndroid extends ConverterCommon {
   public constructor(
@@ -58,13 +58,9 @@ export class ConverterAndroid extends ConverterCommon {
   private encodeI18nEntries(i18nEntries: I18nEntries): I18nEntries {
     const encodedI18nEntries: I18nEntries = new Map();
     i18nEntries.forEach((value, key) => {
-      const encodedKey = encodeKey(key);
+      const encodedKey = (key);
       const encodedValue = encodeValue(value);
-      if (key.indexOf("protected.") !== -1) {
-          var pkey = key.replace("protected.", "");
-          encodedI18nEntries.set(pkey, encodedValue);
-      }
-      else if (key.indexOf("ios.info.plist") !== -1) {/* do nothing */}
+      if (key.indexOf("ios.info.plist") !== -1) {/* do nothing */}
       else if (key === "app.name") {
           encodedI18nEntries.set("app_name", encodedValue);
           encodedI18nEntries.set("title_activity_kimera", encodedValue);

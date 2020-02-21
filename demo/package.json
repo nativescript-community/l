@@ -1,15 +1,15 @@
 {
-  "name": "nativescript-localize-demo-javascript",
-  "description": "nativescript-localize javascript demo",
+  "name": "nativescript-l-demo-javascript",
+  "description": "nativescript-l javascript demo",
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
   "readme": "NativeScript Application",
   "dependencies": {
-    "nativescript-localize": "4.2.0",
+    "nativescript-l": "file:../plugin",
     "@nativescript/theme": "~2.2.1",
     "nativescript-unit-test-runner": "0.7.0",
-    "tns-core-modules": "~6.3.2"
+    "@nativescript/core": "~6.3.2"
   },
   "devDependencies": {
     "jasmine-core": "^3.3.0",

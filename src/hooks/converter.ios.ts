@@ -4,7 +4,7 @@ import * as plist from "simple-plist";
 
 import { ConverterCommon } from "./converter.common";
 import { DataProvider, I18nEntries, Languages } from "./data.provider";
-import { encodeKey, encodeValue } from "../resource.ios";
+import { encodeValue } from "./resource.ios";
 
 export class ConverterIOS extends ConverterCommon {
   protected cleanObsoleteResourcesFiles(resourcesDirectory: string, languages: Languages): this {
@@ -55,7 +55,7 @@ export class ConverterIOS extends ConverterCommon {
   private encodeI18nEntries(i18nEntries: I18nEntries): I18nEntries {
     const encodedI18nEntries: I18nEntries = new Map();
     i18nEntries.forEach((value, key) => {
-      const encodedKey = encodeKey(key);
+      const encodedKey = (key);
       const encodedValue = encodeValue(value);
       encodedI18nEntries.set(encodedKey, encodedValue);
     });
@@ -93,5 +93,6 @@ export class ConverterIOS extends ConverterCommon {
     if (resourceChanged) {
       plist.writeFileSync(resourceFilePath, data);
     }
+    return this;
   }
 }

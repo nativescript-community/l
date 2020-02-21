@@ -1,40 +1,39 @@
-import { vsprintf } from "sprintf-js";
-import { setString } from "tns-core-modules/application-settings";
+import { vsprintf } from 'sprintf-js';
+import { setString } from '@nativescript/core/application-settings';
 
-import { convertAtSignToStringSign } from "./placeholder";
-import { encodeKey } from "./resource";
+import { convertAtSignToStringSign } from './placeholder';
 
-let bundle;
+export * from './localize.common';
+import * as common from './localize.common';
 
-const getBundle = (function () {
-  return function () {
-    if (!bundle) {
-      bundle = NSBundle.mainBundle;
-    }
-    return bundle;
-  };
+let bundle:NSBundle;
+
+const getBundle = (function() {
+    return function() {
+        if (!bundle) {
+            bundle = NSBundle.mainBundle;
+        }
+        return bundle;
+    };
 })();
 
-export function localize(key: string, ...args: string[]): string {
-  const localizedString = getBundle().localizedStringForKeyValueTable(encodeKey(key), key, null);
-  return vsprintf(convertAtSignToStringSign(localizedString), args);
+export function localizeNative(key: string, ...args: string[]): string {
+    const localizedString = getBundle().localizedStringForKeyValueTable((key), key, null);
+    return vsprintf(convertAtSignToStringSign(localizedString), args);
 }
+(common as any).localizeNative = localizeNative;
 
-export function androidLaunchEventLocalizationHandler() {
-  // dummy
-}
 
-export function overrideLocale(locale: string): boolean {
-  const path = NSBundle.mainBundle.pathForResourceOfType(locale.substring(0, 2), "lproj");
+export function overrideNativeLocale(locale: string): boolean {
+    const path = NSBundle.mainBundle.pathForResourceOfType(locale.substring(0, 2), 'lproj');
 
-  if (!path) {
-    return false;
-  }
+    if (!path) {
+        return false;
+    }
 
-  bundle = NSBundle.bundleWithPath(path);
-  NSUserDefaults.standardUserDefaults.setObjectForKey([locale], "AppleLanguages");
-  NSUserDefaults.standardUserDefaults.synchronize();
-  setString("__app__language__", locale.substring(0, 2));
+    bundle = NSBundle.bundleWithPath(path);
+    NSUserDefaults.standardUserDefaults.setObjectForKey([locale], 'AppleLanguages');
+    NSUserDefaults.standardUserDefaults.synchronize();
 
-  return true;
+    return true;
 }

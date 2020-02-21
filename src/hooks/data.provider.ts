@@ -103,7 +103,8 @@ export class DataProvider {
         i18nEntries.set(prefix, element.join(""));
       } else if (typeof element === "object") {
         for (const key of Object.keys(element)) {
-          stack.push({ prefix: prefix === "" ? key : `${prefix}.${key}`, element: element[key] });
+          const newKey = (key)
+          stack.push({ prefix: prefix === "" ? newKey : `${prefix}.${newKey}`, element: element[key] });
         }
       } else {
         i18nEntries.set(prefix, new String(element).valueOf());

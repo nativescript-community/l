@@ -1,12 +1,12 @@
-# nativescript-localize
-[![npm](https://img.shields.io/npm/v/nativescript-localize.svg)](https://www.npmjs.com/package/nativescript-localize)
-[![npm](https://img.shields.io/npm/dm/nativescript-localize.svg)](https://www.npmjs.com/package/nativescript-localize)
+# nativescript-l
+[![npm](https://img.shields.io/npm/v/nativescript-l.svg)](https://www.npmjs.com/package/nativescript-l)
+[![npm](https://img.shields.io/npm/dm/nativescript-l.svg)](https://www.npmjs.com/package/nativescript-l)
 
 This is a plugin for NativeScript that implements internationalization (i18n) using the native capabilities
 of each platform. It is inspired from [nativescript-i18n](https://github.com/rborn/nativescript-i18n)
 
 ## Credits
-A lot of thanks goes out to [Ludovic Fabrèges (@lfabreges)](https://github.com/lfabreges) for developing and maintaining this plugin in the past. When he had to abandon it due to shifted priorities, he was kind enough to [move the repo to me](https://github.com/EddyVerbruggen/nativescript-localize/issues/73).
+A lot of thanks goes out to [Ludovic Fabrèges (@lfabreges)](https://github.com/lfabreges) for developing and maintaining this plugin in the past. When he had to abandon it due to shifted priorities, he was kind enough to [move the repo to me](https://github.com/EddyVerbruggen/nativescript-l/issues/73).
 
 ## Table of contents
 * [Installation](#installation)
@@ -25,7 +25,7 @@ A lot of thanks goes out to [Ludovic Fabrèges (@lfabreges)](https://github.com/
 
 ## Installation
 ```shell
-tns plugin add nativescript-localize
+tns plugin add nativescript-l
 ```
 
 ## Usage
@@ -45,7 +45,7 @@ the [application name](#how-to-localize-the-application-name) to avoid any error
 #### app.module.ts
 ```ts
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
-import { NativeScriptLocalizeModule } from "nativescript-localize/angular";
+import { NativeScriptLocalizeModule } from "nativescript-l/angular";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 
 import { AppComponent } from "./app.component";
@@ -70,7 +70,7 @@ export class AppModule { }
 
 #### Script
 ```ts
-import { localize } from "nativescript-localize";
+import { localize } from "nativescript-l";
 
 console.log(localize("Hello world !"));
 ```
@@ -80,7 +80,7 @@ console.log(localize("Hello world !"));
 #### app.js
 ```js
 const application = require("application");
-const localize = require("nativescript-localize");
+const localize = require("nativescript-l");
 application.setResources({ L: localize });
 ```
 
@@ -92,7 +92,7 @@ application.setResources({ L: localize });
 
 #### Script
 ```js
-const localize = require("nativescript-localize");
+const localize = require("nativescript-l");
 
 console.log(localize("Hello world !"));
 ```
@@ -109,7 +109,7 @@ navigate to, then add this little hack to the 'page loaded' function of that new
 ### Vue
 #### app.js
 ```js
-import { localize } from "nativescript-localize";
+import { localize } from "nativescript-l";
 
 Vue.filter("L", localize);
 ```
@@ -181,7 +181,7 @@ This plugin uses the native capabilities of each platform, language selection is
 ## On iOS you can programmatically override this language since plugin version 4.2.0 by doing this:
 
 ```typescript
-import { overrideLocale } from "nativescript-localize/localize";
+import { overrideLocale } from "nativescript-l/localize";
 const localeOverriddenSuccessfully = overrideLocale("en-GB"); // or "nl-NL", etc (or even just the part before the hyphen)
 ```
 
@@ -191,7 +191,7 @@ In your app.ts / main.ts / app.js
 
 ```ts
 import { on, launchEvent } from '@nativescript/core/application';
-import { androidLaunchEventLocalizationHandler } from 'nativescript-localize/localize';
+import { androidLaunchEventLocalizationHandler } from 'nativescript-l/localize';
 
 on(launchEvent, (args) => {
   if (args.android) {
@@ -203,7 +203,7 @@ on(launchEvent, (args) => {
 And in your settings page where user chooses the language:
 
 ```ts
-import { overrideLocale } from "nativescript-localize/localize";
+import { overrideLocale } from "nativescript-l/localize";
 const localeOverriddenSuccessfully = overrideLocale("en-GB"); // or "nl-NL", etc (or even just the part before the hyphen)
 ```
 
@@ -213,7 +213,7 @@ For Example:
 
 ```ts
 import { android as _android } from '@nativescript/core/application';
-import { overrideLocale } from 'nativescript-localize/localize';
+import { overrideLocale } from 'nativescript-l/localize';
 
 alert({
   title: 'Switch Language',
