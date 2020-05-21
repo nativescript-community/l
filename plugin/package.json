@@ -34,7 +34,7 @@
       "email": "sp@shiv19.com"
     }
   ],
-  "main": "localize.js",
+  "main": "localize",
   "typings": "localize.d.ts",
   "repository": {
     "type": "git",
