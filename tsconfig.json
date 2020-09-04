@@ -41,7 +41,7 @@
   ],
   "exclude": [
       "node_modules",
-      "angular"
+      "src/angular"
   ],
   "compileOnSave": false
 }
