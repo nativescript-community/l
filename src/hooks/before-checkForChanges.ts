@@ -3,7 +3,7 @@ import { ConverterAndroid } from "./converter.android";
 import { ConverterIOS } from "./converter.ios";
 import { DataProvider } from "./data.provider";
 
-export = function(
+export default function(
   androidResourcesMigrationService: IAndroidResourcesMigrationService,
   logger: ILogger,
   projectData: IProjectData,

@@ -69,3 +69,5 @@ plugin/*.ts
 *.aar
 /demo-vue/platforms
 plugin/angular/*.ts
+plugin/**/*.d.ts
+/plugin/angular

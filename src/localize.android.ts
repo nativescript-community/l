@@ -1,7 +1,5 @@
 import { vsprintf } from 'sprintf-js';
 import { android as _android } from '@nativescript/core/application';
-import { getString, setString } from '@nativescript/core/application-settings';
-import { isAndroid } from '@nativescript/core/platform';
 import * as utils from '@nativescript/core/utils/utils';
 
 export * from './localize.common';

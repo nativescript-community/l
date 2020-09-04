@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from "@angular/core";
 
-import { l } from "../localize";
+import { l } from "@nativescript-community/l";
 
 @Pipe({ name: "L" })
 export class LocalizePipe implements PipeTransform {

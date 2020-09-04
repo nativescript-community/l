@@ -1,4 +1,4 @@
-export = function (hookArgs: any) {
+export default function (hookArgs: any) {
   if (hookArgs.liveSyncData && !hookArgs.liveSyncData.bundle) {
     return (args, originalMethod) => {
       return originalMethod(...args).then(originalPatterns => {

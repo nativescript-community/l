@@ -1,4 +1,4 @@
-import { File, knownFolders, path } from '@nativescript/core/file-system';
+import { File, knownFolders, path } from '@nativescript/core';
 import { vsprintf } from 'sprintf-js';
 
 let currentLocales = undefined;

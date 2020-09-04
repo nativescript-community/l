@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-      "target": "es6",
-      "module": "commonjs",
+      "target": "es2017",
+      "module": "esnext",
+      "moduleResolution": "node",
       "declaration": true,
       "removeComments": true,
       "noLib": false,
@@ -28,7 +29,10 @@
           "*": [
               "./node_modules/*"
           ]
-      }
+      },
+      "plugins": [
+        { "transform": "../../node_modules/@nativescript/webpack/transformers/ns-transform-native-classes", "type": "raw" }
+      ]
   },
   "include": [
       "src/**/*.ts",
@@ -37,8 +41,7 @@
   ],
   "exclude": [
       "node_modules",
-      ".git",
-      "dist"
+      "angular"
   ],
   "compileOnSave": false
 }

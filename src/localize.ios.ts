@@ -1,5 +1,4 @@
 import { vsprintf } from 'sprintf-js';
-import { setString } from '@nativescript/core/application-settings';
 
 import { convertAtSignToStringSign } from './placeholder';
 
