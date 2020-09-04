@@ -1,12 +1,12 @@
 {
-  "name": "nativescript-l-demo-vue",
-  "description": "nativescript-l vue demo",
+  "name": "@nativescript-community/l-demo-vue",
+  "description": "@nativescript-community/l vue demo",
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
   "readme": "NativeScript Application",
   "dependencies": {
-    "nativescript-l": "file:../plugin",
+    "@nativescript-community/l": "file:../plugin",
     "nativescript-vue": "^2.4.0",
     "@nativescript/core": "^6.4.1"
   },

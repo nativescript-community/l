@@ -1,12 +1,12 @@
-# nativescript-l
-[![npm](https://img.shields.io/npm/v/nativescript-l.svg)](https://www.npmjs.com/package/nativescript-l)
-[![npm](https://img.shields.io/npm/dm/nativescript-l.svg)](https://www.npmjs.com/package/nativescript-l)
+# @nativescript-community/l
+[![npm](https://img.shields.io/npm/v/@nativescript-community/l.svg)](https://www.npmjs.com/package/@nativescript-community/l)
+[![npm](https://img.shields.io/npm/dm/@nativescript-community/l.svg)](https://www.npmjs.com/package/@nativescript-community/l)
 
 This is a plugin for NativeScript that implements internationalization (i18n) using the native capabilities
-of each platform. It is a direct fork of [nativescript-localize](https://github.com/EddyVerbruggen/nativescript-localize)
+of each platform. It is a direct fork of [@nativescript-community/localize](https://github.com/EddyVerbruggen/@nativescript-community/localize)
 
 ## Differences
-This plugin was created to have a different behavior from [nativescript-localize](https://github.com/EddyVerbruggen/nativescript-localize):
+This plugin was created to have a different behavior from [@nativescript-community/localize](https://github.com/EddyVerbruggen/@nativescript-community/localize):
 * the default `localize` method was renamed to `l`
 * the default `l` method tries to load from a local JSON object
 * you can load such a JSON object with `loadLocalJSON` passing either the JSON or the path to it
@@ -17,7 +17,7 @@ This plugin was created to have a different behavior from [nativescript-localize
 
 
 ## Credits
-A lot of thanks goes out to  [Eddy Verbruggen](https://github.com/EddyVerbruggen) and [Ludovic Fabrèges (@lfabreges)](https://github.com/lfabreges) for developing and maintaining [nativescript-localize](https://github.com/EddyVerbruggen/nativescript-localize).
+A lot of thanks goes out to  [Eddy Verbruggen](https://github.com/EddyVerbruggen) and [Ludovic Fabrèges (@lfabreges)](https://github.com/lfabreges) for developing and maintaining [@nativescript-community/localize](https://github.com/EddyVerbruggen/@nativescript-community/localize).
 
 ## Table of contents
 * [Installation](#installation)
@@ -36,7 +36,7 @@ A lot of thanks goes out to  [Eddy Verbruggen](https://github.com/EddyVerbruggen
 
 ## Installation
 ```shell
-tns plugin add nativescript-l
+tns plugin add @nativescript-community/l
 ```
 
 ## Usage
@@ -56,7 +56,7 @@ the [application name](#how-to-localize-the-application-name) to avoid any error
 #### app.module.ts
 ```ts
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
-import { NativeScriptLocalizeModule } from "nativescript-l/angular";
+import { NativeScriptLocalizeModule } from "@nativescript-community/l/angular";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 
 import { AppComponent } from "./app.component";
@@ -81,7 +81,7 @@ export class AppModule { }
 
 #### Script
 ```ts
-import { localize } from "nativescript-l";
+import { localize } from "@nativescript-community/l";
 
 console.log(localize("Hello world !"));
 ```
@@ -91,7 +91,7 @@ console.log(localize("Hello world !"));
 #### app.js
 ```js
 const application = require("application");
-const localize = require("nativescript-l");
+const localize = require("@nativescript-community/l");
 application.setResources({ L: localize.l });
 ```
 
@@ -103,7 +103,7 @@ application.setResources({ L: localize.l });
 
 #### Script
 ```js
-const localize = require("nativescript-l");
+const localize = require("@nativescript-community/l");
 
 console.log(localize("Hello world !"));
 ```
@@ -120,7 +120,7 @@ navigate to, then add this little hack to the 'page loaded' function of that new
 ### Vue
 #### app.js
 ```js
-import { l } from "nativescript-l";
+import { l } from "@nativescript-community/l";
 
 Vue.filter("L", l);
 ```
@@ -195,7 +195,7 @@ Seeing this module now uses JSON objects. Overriding consist of 3 steps:
 
 
 ```typescript
-import { overrideLocaleNative } from "nativescript-l/localize";
+import { overrideLocaleNative } from "@nativescript-community/l/localize";
 const localeOverriddenSuccessfully = overrideLocaleNative("en-GB"); // or "nl-NL", etc (or even just the part before the hyphen)
 ```
 

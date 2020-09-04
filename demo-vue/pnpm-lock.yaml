@@ -1,6 +1,6 @@
 dependencies:
   '@nativescript/core': 6.4.1
-  nativescript-l: 'link:../plugin'
+  @nativescript-community/l: 'link:../plugin'
   nativescript-vue: 2.4.0
 devDependencies:
   ansi-styles: 4.2.1
@@ -5292,7 +5292,7 @@ specifiers:
   ansi-styles: ^4.2.1
   del: 5.1.0
   nativescript-dev-webpack: ^1.5.0
-  nativescript-l: 'file:../plugin'
+  @nativescript-community/l: 'file:../plugin'
   nativescript-vue: ^2.4.0
   nativescript-vue-template-compiler: ^2.4.0
   node-sass: ^4.13.1

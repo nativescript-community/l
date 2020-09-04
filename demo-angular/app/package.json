@@ -1,9 +1,9 @@
 {
   "android": {
     "v8Flags": "--expose_gc",
-    "requireModules": ["nativescript-l"]
+    "requireModules": ["@nativescript-community/l"]
   },
   "main": "main.js",
-  "name": "nativescript-l-demo-angular",
+  "name": "@nativescript-community/l-demo-angular",
   "version": "1.0.0"
 }

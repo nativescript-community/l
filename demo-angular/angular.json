@@ -6,12 +6,12 @@
     "defaultCollection": "@nativescript/schematics"
   },
   "projects": {
-    "nativescript-l-demo-angular": {
+    "@nativescript-community/l-demo-angular": {
       "root": "",
       "sourceRoot": "app",
       "projectType": "application",
       "prefix": "app"
     }
   },
-  "defaultProject": "nativescript-l-demo-angular"
+  "defaultProject": "@nativescript-community/l-demo-angular"
 }

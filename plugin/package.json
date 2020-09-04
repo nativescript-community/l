@@ -13,8 +13,8 @@
     "ios",
     "android"
   ],
-  "homepage": "https://github.com/lfabreges/nativescript-l",
-  "bugs": "https://github.com/lfabreges/nativescript-l/issues",
+  "homepage": "https://github.com/@nativescript-community/l",
+  "bugs": "https://github.com/@nativescript-community/l/issues",
   "license": "MIT",
   "author": {
     "name": "Ludovic Fabrèges",
@@ -38,7 +38,7 @@
   "typings": "localize.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lfabreges/nativescript-l.git"
+    "url": "https://github.com/@nativescript-community/l.git"
   },
   "scripts": {
     "compile": "tsc -p hooks && tsc && ngc -p tsconfig.aot.json",
