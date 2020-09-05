@@ -3,10 +3,10 @@
 [![npm](https://img.shields.io/npm/dm/@nativescript-community/l.svg)](https://www.npmjs.com/package/@nativescript-community/l)
 
 This is a plugin for NativeScript that implements internationalization (i18n) using the native capabilities
-of each platform. It is a direct fork of [@nativescript-community/localize](https://github.com/EddyVerbruggen/@nativescript-community/localize)
+of each platform. It is a direct fork of [@nativescript-community/localize](https://github.com/@nativescript-community/localize)
 
 ## Differences
-This plugin was created to have a different behavior from [@nativescript-community/localize](https://github.com/EddyVerbruggen/@nativescript-community/localize):
+This plugin was created to have a different behavior from [@nativescript-community/localize](https://github.com/@nativescript-community/localize):
 * the default `localize` method was renamed to `l`
 * the default `l` method tries to load from a local JSON object
 * you can load such a JSON object with `loadLocalJSON` passing either the JSON or the path to it
@@ -17,7 +17,7 @@ This plugin was created to have a different behavior from [@nativescript-communi
 
 
 ## Credits
-A lot of thanks goes out to  [Eddy Verbruggen](https://github.com/EddyVerbruggen) and [Ludovic Fabrèges (@lfabreges)](https://github.com/lfabreges) for developing and maintaining [@nativescript-community/localize](https://github.com/EddyVerbruggen/@nativescript-community/localize).
+A lot of thanks goes out to  [Eddy Verbruggen](https://github.com/EddyVerbruggen) and [Ludovic Fabrèges (@lfabreges)](https://github.com/lfabreges) for developing and maintaining [nativescript-localize](https://github.com/EddyVerbruggen/nativescript-localize).
 
 ## Table of contents
 * [Installation](#installation)
