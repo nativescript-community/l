@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "mkdirp": "^0.5.1",
+    "@nativescript/hook": "~2.0.0",
     "nativescript-hook": "~0.2.5",
     "shorthash": "0.0.2",
     "simple-plist": "^0.3.0",

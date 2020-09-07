@@ -62,7 +62,7 @@
     },
     "dependencies": {
         "mkdirp": "^1.0.4",
-        "nativescript-hook": "~0.2.5",
+        "@nativescript/hook": "~2.0.0",
         "shorthash": "0.0.2",
         "simple-plist": "^1.1.0",
         "sprintf-js": "^1.1.2"
@@ -83,7 +83,7 @@
         "@typescript-eslint/eslint-plugin": "4.0.1",
         "@typescript-eslint/parser": "4.0.1",
         "cpy-cli": "^3.1.1",
-        "eslint":"7.8.1",
+        "eslint": "7.8.1",
         "husky": "^4.2.5",
         "lerna": "^3.22.1",
         "ng-packagr": "~10.1.0",
