@@ -49,7 +49,6 @@
   "dependencies": {
     "@nativescript/hook": "~2.0.0",
     "mkdirp": "^0.5.1",
-    "nativescript-hook": "~0.2.5",
     "shorthash": "0.0.2",
     "simple-plist": "^0.3.0",
     "sprintf-js": "^1.1.1"
