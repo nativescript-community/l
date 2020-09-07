@@ -3,7 +3,7 @@ import { ConverterAndroid } from './converter.android';
 import { ConverterIOS } from './converter.ios';
 import { DataProvider } from './data.provider';
 
-export default function (
+module.exports =  function (
     androidResourcesMigrationService: IAndroidResourcesMigrationService,
     logger: ILogger,
     projectData: IProjectData,
@@ -33,7 +33,7 @@ export default function (
     }
 
     converter.run();
-}
+};
 
 function getPlatformData(
     platformData: IPlatformData,

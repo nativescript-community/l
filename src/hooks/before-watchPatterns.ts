@@ -1,4 +1,4 @@
-export default function (hookArgs: any) {
+module.exports = function (hookArgs: any) {
     if (hookArgs.liveSyncData && !hookArgs.liveSyncData.bundle) {
         return (args, originalMethod) =>
             originalMethod(...args).then((originalPatterns) => {
@@ -16,4 +16,4 @@ export default function (hookArgs: any) {
             });
     }
     return null;
-}
+};

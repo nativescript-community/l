@@ -1,11 +1,18 @@
 dependencies:
+  '@nativescript/hook': 2.0.0
   mkdirp: 0.5.1
-  nativescript-hook: 0.2.5
   shorthash: 0.0.2
   simple-plist: 0.3.0
   sprintf-js: 1.1.2
 lockfileVersion: 5.1
 packages:
+  /@nativescript/hook/2.0.0:
+    dependencies:
+      glob: 7.1.6
+      mkdirp: 1.0.4
+    dev: false
+    resolution:
+      integrity: sha512-v3Hj3Zpd69sQJfFpDNXonV0EjO1a2OL4l48wlo1Ycsqk4r7RY822d/irFTjt0LllRG0OcdEGgfG6wKb0YgPyHw==
   /balanced-match/1.0.0:
     dev: false
     resolution:
@@ -43,8 +50,13 @@ packages:
     dev: false
     resolution:
       integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=
-  /glob/6.0.4:
+  /fs.realpath/1.0.0:
+    dev: false
+    resolution:
+      integrity: sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
+  /glob/7.1.6:
     dependencies:
+      fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
       minimatch: 3.0.4
@@ -52,7 +64,7 @@ packages:
       path-is-absolute: 1.0.1
     dev: false
     resolution:
-      integrity: sha1-DwiGD2oVUSey+t1PnOJLGqtuTSI=
+      integrity: sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==
   /inflight/1.0.6:
     dependencies:
       once: 1.4.0
@@ -81,13 +93,13 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
-  /nativescript-hook/0.2.5:
-    dependencies:
-      glob: 6.0.4
-      mkdirp: 0.5.1
+  /mkdirp/1.0.4:
     dev: false
+    engines:
+      node: '>=10'
+    hasBin: true
     resolution:
-      integrity: sha512-ciGJtNbtMB2lGv8jAkUripkRjd3g8atX9VYPSt6e8PI6YPiOKeoma3xjcXoW66pFMYpHnfrbp6Mq9U/QtiQrVg==
+      integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
   /once/1.4.0:
     dependencies:
       wrappy: 1.0.2
@@ -147,8 +159,8 @@ packages:
     resolution:
       integrity: sha512-yS2uJflVQs6n+CyjHoaBmVSqIDevTAWrzMmjG1Gc7h1qQ7uVozNhEPJAwZXWyGQ/Gafo3fCwrcaokezLPupVyQ==
 specifiers:
+  '@nativescript/hook': ~2.0.0
   mkdirp: ^0.5.1
-  nativescript-hook: ~0.2.5
   shorthash: 0.0.2
   simple-plist: ^0.3.0
   sprintf-js: ^1.1.1
