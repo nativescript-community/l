@@ -1,7 +1,7 @@
 {
   "name": "@nativescript-community/l",
   "description": "Native internationalization plugin for NativeScript using native capabilities of each platform",
-  "version": "4.2.5",
+  "version": "4.2.6",
   "keywords": [
     "nativescript",
     "internationalization",
@@ -47,8 +47,8 @@
     "tslint": "tslint **/*.ts --config ../tslint.json"
   },
   "dependencies": {
-    "mkdirp": "^0.5.1",
     "@nativescript/hook": "~2.0.0",
+    "mkdirp": "^0.5.1",
     "nativescript-hook": "~0.2.5",
     "shorthash": "0.0.2",
     "simple-plist": "^0.3.0",
