@@ -28,6 +28,6 @@
         "plugins": [{ "transform": "./node_modules/@nativescript/webpack/transformers/ns-transform-native-classes", "type": "raw" }]
     },
     "include": ["src/**/*.ts", "references.d.ts", "src/references.d.ts"],
-    "exclude": ["node_modules", "src/angular"],
+    "exclude": ["node_modules", "src/angular", "src/hooks"],
     "compileOnSave": false
 }

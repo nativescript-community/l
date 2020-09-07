@@ -1,4 +1,4 @@
-import { DataProvider, I18nEntries, Languages } from "./data.provider";
+import { DataProvider, I18nEntries, Languages } from './data.provider';
 export declare abstract class ConverterCommon {
     protected dataProvider: DataProvider;
     protected logger: ILogger;
