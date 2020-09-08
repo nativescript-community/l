@@ -5,10 +5,10 @@ import { convertAtSignToStringSign } from './placeholder';
 export * from './localize.common';
 import * as common from './localize.common';
 
-let bundle:NSBundle;
+let bundle: NSBundle;
 
-const getBundle = (function() {
-    return function() {
+const getBundle = (function () {
+    return function () {
         if (!bundle) {
             bundle = NSBundle.mainBundle;
         }
@@ -17,11 +17,9 @@ const getBundle = (function() {
 })();
 
 export function localizeNative(key: string, ...args: string[]): string {
-    const localizedString = getBundle().localizedStringForKeyValueTable((key), key, null);
+    const localizedString = getBundle().localizedStringForKeyValueTable(key, key, null);
     return vsprintf(convertAtSignToStringSign(localizedString), args);
 }
-(common as any).localizeNative = localizeNative;
-
 
 export function overrideNativeLocale(locale: string): boolean {
     const path = NSBundle.mainBundle.pathForResourceOfType(locale.substring(0, 2), 'lproj');
