@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.10](https://github.com/@nativescript-community/l/compare/v4.2.9...v4.2.10) (2020-09-08)
+
+
+### Bug Fixes
+
+* **ios:** crash ([3f8ed51](https://github.com/@nativescript-community/l/commit/3f8ed5193affb9e5b15f7783448615b1f8b8ab90))
+
+
+
+
+
 ## [4.2.9](https://github.com/@nativescript-community/l/compare/v4.2.8...v4.2.9) (2020-09-07)
 
 
