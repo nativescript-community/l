@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.11](https://github.com/@nativescript-community/l/compare/v4.2.10...v4.2.11) (2020-10-06)
+
+
+### Bug Fixes
+
+* ensure we keep case for the rest ([3ee6ddc](https://github.com/@nativescript-community/l/commit/3ee6ddcb64085d2a253d86deaf5778335792bf99))
+
+
+
+
+
 ## [4.2.10](https://github.com/@nativescript-community/l/compare/v4.2.9...v4.2.10) (2020-09-08)
 
 
