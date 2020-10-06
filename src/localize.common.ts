@@ -1,10 +1,10 @@
 import { File, knownFolders, path } from '@nativescript/core';
 import { vsprintf } from 'sprintf-js';
 
-let currentLocales = undefined;
+let currentLocales;
 
 function flatten(obj: any) {
-    let newObj: any = {};
+    const newObj: any = {};
     for (const key of Object.keys(obj)) {
         if (typeof obj[key] !== null && typeof obj[key] === 'object') {
             const subObj = flatten(obj[key]);
@@ -35,7 +35,7 @@ export function loadLocaleJSON(jsonFileOrData: string | object, shouldFlatten = 
     }
 }
 
-export let localizeNative = function(key: string, ...args: string[]): string {
+export const localizeNative = function (key: string, ...args: string[]): string {
     throw 'unimplemented';
 };
 
@@ -63,12 +63,12 @@ export function l(key: string, ...args: string[]): string {
 }
 
 export function titlecase(value) {
-    return value.replace(/\w\S*/g, function(txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    return value.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1);
     });
 }
 export function capitalize(value) {
-    return value.charAt(0).toUpperCase() + value.substr(1).toLowerCase();
+    return value.charAt(0).toUpperCase() + value.substr(1);
 }
 export function lt(key: string, ...args: string[]): string {
     return titlecase(l(key, ...args));
