@@ -4,8 +4,6 @@ import * as utils from '@nativescript/core/utils/utils';
 
 export * from './localize.common';
 
-declare var java: any;
-
 const getResources = (function() {
     let resources = null;
     return function() {

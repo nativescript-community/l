@@ -33,58 +33,49 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-const flagsWidthPrecisionLength = "([-+0#])?(\\d+|\\*)?(\\.(\\d+|\\*))?(hh?|ll?|L|z|j|t|q)?";
+const flagsWidthPrecisionLength = '([-+0#])?(\\d+|\\*)?(\\.(\\d+|\\*))?(hh?|ll?|L|z|j|t|q)?';
 const parameterFlagsWidthPrecisionLength = `(\\d+\\$)?${flagsWidthPrecisionLength}`;
-const types = "[diufFeEgGxXoscpaA]";
+const types = '[diufFeEgGxXoscpaA]';
 
 function replacePlaceholder(find: RegExp, replace: Function, subject: string): string {
-  let match = null;
-  while (null !== (match = find.exec(subject))) {
-    const previousString = subject.substring(0, match.index);
-    if (isEndingWithPercentSign(previousString)) { continue; }
-    const replacedString = replace(...match);
-    find.lastIndex += replacedString.length - match[0].length;
-    subject = previousString + replacedString + subject.substring(match.index + match[0].length);
-  }
-  return subject;
+    let match = null;
+    while (null !== (match = find.exec(subject))) {
+        const previousString = subject.substring(0, match.index);
+        if (isEndingWithPercentSign(previousString)) {
+            continue;
+        }
+        const replacedString = replace(...match);
+        find.lastIndex += replacedString.length - match[0].length;
+        subject = previousString + replacedString + subject.substring(match.index + match[0].length);
+    }
+    return subject;
 }
 
 function isEndingWithPercentSign(subject: string): boolean {
-  return /(?:^|[^%])(?:%%)*%$/.test(subject);
+    return /(?:^|[^%])(?:%%)*%$/.test(subject);
 }
 
 export function convertPlaceholders(subject: string): string {
-  return numberPlaceholders(escapeSinglePercentSign(subject));
+    return numberPlaceholders(escapeSinglePercentSign(subject));
 }
 
 export function convertAtSignToStringSign(subject: string): string {
-  return replacePlaceholder(
-    new RegExp(`(%${parameterFlagsWidthPrecisionLength})@`, "g"),
-    (_, $1) => `${$1}s`,
-    subject
-  );
+    return replacePlaceholder(new RegExp(`(%${parameterFlagsWidthPrecisionLength})@`, 'g'), (_, $1) => `${$1}s`, subject);
 }
 
 export function convertStringSignToAtSign(subject: string): string {
-  return replacePlaceholder(
-    new RegExp(`(%${parameterFlagsWidthPrecisionLength})s`, "g"),
-    (_, $1) => `${$1}@`,
-    subject
-  );
+    return replacePlaceholder(new RegExp(`(%${parameterFlagsWidthPrecisionLength})s`, 'g'), (_, $1) => `${$1}@`, subject);
 }
 
 export function escapeSinglePercentSign(subject: string): string {
-  return subject.replace(
-    new RegExp(`(^|[^%])(%)(?!(%|${parameterFlagsWidthPrecisionLength}${types}))`, "g"),
-    "$1%%"
-  );
+    return subject.replace(new RegExp(`(^|[^%])(%)(?!(%|${parameterFlagsWidthPrecisionLength}${types}))`, 'g'), '$1%%');
 }
 
 export function numberPlaceholders(subject: string): string {
-  let index = 0;
-  return replacePlaceholder(
-    new RegExp(`%(${flagsWidthPrecisionLength}${types})`, "g"),
-    (_, $1) => `%${++index}$${$1}`,
-    subject
-  );
+    let index = 0;
+    return replacePlaceholder(
+        new RegExp(`%(${flagsWidthPrecisionLength}${types})`, 'g'),
+        (_, $1) => `%${++index}$${$1}`,
+        subject
+    );
 }
