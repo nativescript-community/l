@@ -1,1 +1,1 @@
-export * from './localize.android'
+export * from './localize.android';

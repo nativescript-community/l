@@ -1,5 +1,8 @@
 import { File, knownFolders, path } from '@nativescript/core';
 import { vsprintf } from 'sprintf-js';
+import { localizeNative } from './localizenative';
+
+export * from './localizenative';
 
 let currentLocales;
 
@@ -34,10 +37,6 @@ export function loadLocaleJSON(jsonFileOrData: string | object, shouldFlatten = 
         currentLocales = flatten(currentLocales);
     }
 }
-
-export const localizeNative = function (key: string, ...args: string[]): string {
-    throw 'unimplemented';
-};
 
 // function getNested(key: string, obj: object) {
 //     if (obj[key]) {
