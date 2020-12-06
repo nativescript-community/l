@@ -3,10 +3,10 @@
 [![npm](https://img.shields.io/npm/dm/@nativescript-community/l.svg)](https://www.npmjs.com/package/@nativescript-community/l)
 
 This is a plugin for NativeScript that implements internationalization (i18n) using the native capabilities
-of each platform. It is a direct fork of [@nativescript-community/localize](https://github.com/@nativescript-community/localize)
+of each platform. It is a direct fork of [nativescript-localize](https://github.com/EddyVerbruggen/nativescript-localize).
 
 ## Differences
-This plugin was created to have a different behavior from [@nativescript-community/localize](https://github.com/@nativescript-community/localize):
+This plugin was created to have a different behavior from [nativescript-localize](https://github.com/EddyVerbruggen/nativescript-localize):
 * the default `localize` method was renamed to `l`
 * the default `l` method tries to load from a local JSON object
 * you can load such a JSON object with `loadLocalJSON` passing either the JSON or the path to it
