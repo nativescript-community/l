@@ -53,7 +53,7 @@ export function loadLocaleJSON(jsonFileOrData: string | object, shouldFlatten = 
 //     return obj as any;
 // }
 
-export function l(key: string, ...args: string[]): string {
+export function l(key: string, ...args: any[]): string {
     if (currentLocales) {
         return vsprintf(currentLocales[key] || key, args);
     } else {
@@ -69,12 +69,12 @@ export function titlecase(value) {
 export function capitalize(value) {
     return value.charAt(0).toUpperCase() + value.substr(1);
 }
-export function lt(key: string, ...args: string[]): string {
+export function lt(key: string, ...args: any[]): string {
     return titlecase(l(key, ...args));
 }
-export function lu(key: string, ...args: string[]): string {
+export function lu(key: string, ...args: any[]): string {
     return l(key, ...args).toUpperCase();
 }
-export function lc(key: string, ...args: string[]): string {
+export function lc(key: string, ...args: any[]): string {
     return capitalize(l(key, ...args));
 }
