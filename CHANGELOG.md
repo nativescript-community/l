@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.16](https://github.com/@nativescript-community/l/compare/v4.2.15...v4.2.16) (2021-02-10)
+
+
+### Bug Fixes
+
+* l method signature ([0875e9f](https://github.com/@nativescript-community/l/commit/0875e9f12d94b0d920b640ce1238ea098054731d))
+
+
+
+
+
 ## [4.2.15](https://github.com/@nativescript-community/l/compare/v4.2.14...v4.2.15) (2020-12-06)
 
 

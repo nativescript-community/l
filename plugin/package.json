@@ -1,7 +1,7 @@
 {
   "name": "@nativescript-community/l",
   "description": "Native internationalization plugin for NativeScript using native capabilities of each platform",
-  "version": "4.2.15",
+  "version": "4.2.16",
   "sideEffects": false,
   "keywords": [
     "nativescript",
