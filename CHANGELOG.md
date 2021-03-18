@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.17](https://github.com/@nativescript-community/l/compare/v4.2.16...v4.2.17) (2021-03-18)
+
+
+### Bug Fixes
+
+* **ios:** display name missing spaces ([dd307a5](https://github.com/@nativescript-community/l/commit/dd307a58145e4765e072377e9a3a551fb7e7ad9d))
+
+
+
+
+
 ## [4.2.16](https://github.com/@nativescript-community/l/compare/v4.2.15...v4.2.16) (2021-02-10)
 
 
