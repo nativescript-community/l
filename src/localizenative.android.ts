@@ -17,10 +17,10 @@ export function localizeNative(key: string, ...args: string[]): string {
     try {
         const identifier = utils.ad.resources.getStringId(key);
         localizedString = identifier === 0 ? key : getResources().getString(identifier);
+        return vsprintf(localizedString, args);
     } catch (error) {
-        localizedString = key;
+        return key;
     }
-    return vsprintf(localizedString, args);
 }
 
 

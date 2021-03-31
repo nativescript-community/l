@@ -12,8 +12,12 @@ const getBundle = (function () {
 })();
 
 export function localizeNative(key: string, ...args: string[]): string {
-    const localizedString = getBundle().localizedStringForKeyValueTable(key, key, null);
-    return vsprintf(convertAtSignToStringSign(localizedString), args);
+    try {
+        const localizedString = getBundle().localizedStringForKeyValueTable(key, key, null);
+        return vsprintf(convertAtSignToStringSign(localizedString), args);
+    } catch (error) {
+        return key;
+    }
 }
 
 export function overrideNativeLocale(locale: string): boolean {
