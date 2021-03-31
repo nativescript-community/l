@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.19](https://github.com/@nativescript-community/l/compare/v4.2.18...v4.2.19) (2021-03-31)
+
+
+### Bug Fixes
+
+* prevent any localization error (like sprintf placeholder) to go “up” ([72131ce](https://github.com/@nativescript-community/l/commit/72131ce5fa3e68353a05b4e00c869de9306c77d6))
+
+
+
+
+
 ## [4.2.18](https://github.com/@nativescript-community/l/compare/v4.2.17...v4.2.18) (2021-03-18)
 
 
