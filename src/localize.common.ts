@@ -55,7 +55,13 @@ export function loadLocaleJSON(jsonFileOrData: string | object, shouldFlatten = 
 
 export function l(key: string, ...args: any[]): string {
     if (currentLocales) {
-        return vsprintf(currentLocales[key] || key, args);
+        try {
+            return vsprintf(currentLocales[key] || key, args);
+
+        } catch(err) {
+            console.error('l error', err);
+            return key;
+        }
     } else {
         return localizeNative(key, ...args);
     }
