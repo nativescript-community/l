@@ -4,7 +4,7 @@
         "target": "es5",
         "module": "commonjs",
         "moduleResolution": "node",
-        
+        "importHelpers": true
     },
     "include": ["src/hooks/**/*.ts", "src/references.d.ts"],
     "exclude": ["node_modules"],

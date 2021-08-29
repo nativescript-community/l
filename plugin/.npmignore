@@ -4,6 +4,7 @@
 !/**/*.d.ts
 /hooks/tsconfig.json
 /node_modules/
+pnpm-global/
 /typings/
 /tsconfig.aot.json
 /tsconfig.json
