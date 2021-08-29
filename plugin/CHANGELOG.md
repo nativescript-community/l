@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.21](https://github.com/@nativescript-community/l/compare/v4.2.20...v4.2.21) (2021-08-29)
+
+
+### Bug Fixes
+
+* hook fix ([6e0c04d](https://github.com/@nativescript-community/l/commit/6e0c04d3ee9ceecac0bfd2b4405300b857e86114))
+
+
+
+
+
 ## [4.2.20](https://github.com/@nativescript-community/l/compare/v4.2.19...v4.2.20) (2021-04-06)
 
 **Note:** Version bump only for package @nativescript-community/l
