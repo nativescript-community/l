@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.22](https://github.com/@nativescript-community/l/compare/v4.2.21...v4.2.22) (2022-01-14)
+
+
+### Bug Fixes
+
+* **android:** allow `android.strings` object to apply only to default language strings.xml ([c10fe90](https://github.com/@nativescript-community/l/commit/c10fe9064942129ecd2dc9e68ef68c98f0fe5db3))
+
+
+
+
+
 ## [4.2.21](https://github.com/@nativescript-community/l/compare/v4.2.20...v4.2.21) (2021-08-29)
 
 
