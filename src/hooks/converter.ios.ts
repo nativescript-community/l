@@ -59,7 +59,9 @@ export class ConverterIOS extends ConverterCommon {
     private writeStrings(languageResourcesDir: string, resourceFileName: string, i18nEntries: I18nEntries): this {
         let content = '';
         this.encodeI18nEntries(i18nEntries).forEach((encodedValue, encodedKey) => {
-            content += `"${encodedKey}" = "${encodedValue}";\n`;
+            if (!encodedKey.startsWith('android.strings.') && !encodedKey.startsWith('ios.info.plist.')) {
+                content += `"${encodedKey}" = "${encodedValue}";\n`;
+            }
         });
         const resourceFilePath = path.join(languageResourcesDir, resourceFileName);
         this.writeFileSyncIfNeeded(resourceFilePath, content);

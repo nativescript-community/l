@@ -64,7 +64,7 @@ export class ConverterAndroid extends ConverterCommon {
         i18nEntries.forEach((value, key) => {
             const encodedKey = key;
             const encodedValue = encodeValue(value);
-            if (key.startsWith('android.strings.')) {
+            if (key.startsWith('android.strings.') || key.startsWith('ios.info.plist.')) {
                 /* do nothing */
             } else if (key === 'app.name') {
                 encodedI18nEntries.set('app_name', encodedValue);
