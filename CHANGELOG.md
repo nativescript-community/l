@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.23](https://github.com/@nativescript-community/l/compare/v4.2.22...v4.2.23) (2022-01-14)
+
+
+### Bug Fixes
+
+* filter keys added ([62e6e40](https://github.com/@nativescript-community/l/commit/62e6e4018b4a17a9a0c04ed80f73cec76f49ca26))
+
+
+
+
+
 ## [4.2.22](https://github.com/@nativescript-community/l/compare/v4.2.21...v4.2.22) (2022-01-14)
 
 
