@@ -42,7 +42,15 @@ export class ConverterAndroid extends ConverterCommon {
         );
         this.createDirectoryIfNeeded(languageResourcesDir);
         let strings = '<?xml version="1.0" encoding="utf-8"?>\n<resources>\n';
+        if (isDefaultLanguage) {
+            i18nEntries.forEach((value, key) =>{
+                if (key.startsWith('android.strings.')) {
+                    strings += `  <string name="${key.substr(16)}">${encodeValue(value)}</string>\n`;
+                }
+            });
+        }
         this.encodeI18nEntries(i18nEntries).forEach((encodedValue, encodedKey) => {
+
             strings += `  <string name="${encodedKey}">${encodedValue}</string>\n`;
         });
         strings += '</resources>\n';
@@ -56,7 +64,7 @@ export class ConverterAndroid extends ConverterCommon {
         i18nEntries.forEach((value, key) => {
             const encodedKey = key;
             const encodedValue = encodeValue(value);
-            if (key.indexOf('ios.info.plist') !== -1) {
+            if (key.startsWith('android.strings.')) {
                 /* do nothing */
             } else if (key === 'app.name') {
                 encodedI18nEntries.set('app_name', encodedValue);
