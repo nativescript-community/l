@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.25](https://github.com/@nativescript-community/l/compare/v4.2.24...v4.2.25) (2022-05-08)
+
+
+### Bug Fixes
+
+* **android:** use deprecatd method for now ([0a119b4](https://github.com/@nativescript-community/l/commit/0a119b4cb28c3c5bfd2f7d748e05cd3af91f7697))
+
+
+
+
+
 ## [4.2.24](https://github.com/@nativescript-community/l/compare/v4.2.23...v4.2.24) (2022-05-08)
 
 
