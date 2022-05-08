@@ -1,15 +1,4 @@
 {
   "name": "@nativescript-community/l-angular",
-  "main": "index.js",
-  "ngPackage": {
-    "dest": "../../plugin/angular",
-    "lib": {
-      "entryFile": "index.ts",
-      "umdModuleIds": {
-        "@nativescript/core": "ns-core",
-        "@nativescript/angular": "ns-angular",
-        "@nativescript-community/l": "ns-l"
-      }
-    }
-  }
+  "main": "index.js"
 }
