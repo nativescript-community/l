@@ -29,10 +29,10 @@ export function overrideNativeLocale(lang: string): boolean {
     const resources = getResources();
     const configuration = resources.getConfiguration();
     configuration.locale = locale;
-    if (sdkVersion < 17) {
-        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-    } else {
-        (Utils.ad.getApplicationContext() as android.content.Context).createConfigurationContext(configuration);
-    }
+    // if (sdkVersion < 17) {
+    resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+    // } else {
+    //     (Utils.ad.getApplicationContext() as android.content.Context).createConfigurationContext(configuration);
+    // }
     return true;
 }
