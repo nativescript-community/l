@@ -22,6 +22,24 @@ export class ConverterIOS extends ConverterCommon {
                 });
                 this.removeDirectoryIfEmpty(lngResourcesDir);
             });
+        const settingsBundlePath = path.join(this.appResourcesDirectoryPath, 'Settings.bundle');
+        if (fs.existsSync(settingsBundlePath)) {
+            //we copy the 'Localizable.strings' for each settings page
+            fs.readdirSync(settingsBundlePath)
+                .filter((fileName) => {
+                    const match = /^(.+)\.lproj$/.exec(fileName);
+                    return match && !languages.has(match[1]);
+                })
+                .map((fileName) => path.join(resourcesDirectory, fileName))
+                .filter((filePath) => fs.statSync(filePath).isDirectory())
+                .forEach((lngResourcesDir) => {
+                    fs.readdirSync(lngResourcesDir).forEach((fileName) => {
+                        this.removeFileIfExists(path.join(lngResourcesDir, fileName));
+                    });
+                    this.removeDirectoryIfEmpty(lngResourcesDir);
+
+                });
+        }
         return this;
     }
 
@@ -42,6 +60,20 @@ export class ConverterIOS extends ConverterCommon {
         if (isDefaultLanguage) {
             infoPlistStrings.set('CFBundleDevelopmentRegion', language);
             this.writeInfoPlist(infoPlistStrings);
+        }
+        const settingsBundlePath = path.join(this.appResourcesDirectoryPath, 'Settings.bundle');
+        if (fs.existsSync(settingsBundlePath)) {
+            //we copy the 'Localizable.strings' for each settings page
+            fs.readdirSync(settingsBundlePath)
+                .filter((fileName) => fileName.endsWith('.plist'))
+                .forEach((settingsPagePlist) => {
+                    const settingsLanguageResourcesDir = path.join(settingsBundlePath, `${language}.lproj`);
+                    this.createDirectoryIfNeeded(settingsLanguageResourcesDir);
+                    fs.copyFileSync(
+                        path.join(languageResourcesDir, 'Localizable.strings'),
+                        path.join(settingsLanguageResourcesDir, settingsPagePlist.split('.').slice(0, -1).join('.')+'.strings')
+                    );
+                });
         }
         return this;
     }
