@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.26](https://github.com/@nativescript-community/l/compare/v4.2.25...v4.2.26) (2022-05-10)
+
+
+### Features
+
+* **ios:** create Settings.bundle localization files ([f8cdba8](https://github.com/@nativescript-community/l/commit/f8cdba8e8462051687e47630c0dd430626f20964))
+
+
+
+
+
 ## [4.2.25](https://github.com/@nativescript-community/l/compare/v4.2.24...v4.2.25) (2022-05-08)
 
 
