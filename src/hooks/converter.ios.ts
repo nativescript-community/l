@@ -45,17 +45,17 @@ export class ConverterIOS extends ConverterCommon {
 
     protected createLanguageResourcesFiles(language: string, isDefaultLanguage: boolean, i18nEntries: I18nEntries): this {
         const infoPlistStrings: I18nEntries = new Map();
-        i18nEntries.forEach((value, key) => {
-            if (key === 'app.name') {
-                infoPlistStrings.set('CFBundleDisplayName', value.replace(/\s/g, ' '));
-                // infoPlistStrings.set('CFBundleName', value);
-            } else if (key.startsWith('ios.info.plist.')) {
-                infoPlistStrings.set(key.substr(15), value);
+        const projectData = this.projectData;
+        const appId = projectData.nsConfig.id;
+        const encodedEntries = this.encodeI18nEntries(i18nEntries);
+        encodedEntries.forEach((value, key) => {
+            if (key.startsWith('ios.info.plist.')) {
+                infoPlistStrings.set(key.substring(15), value);
             }
         });
         const languageResourcesDir = path.join(this.appResourcesDirectoryPath, `${language}.lproj`);
         this.createDirectoryIfNeeded(languageResourcesDir)
-            .writeStrings(languageResourcesDir, 'Localizable.strings', i18nEntries)
+            .writeStrings(languageResourcesDir, 'Localizable.strings', encodedEntries)
             .writeStrings(languageResourcesDir, 'InfoPlist.strings', infoPlistStrings);
         if (isDefaultLanguage) {
             infoPlistStrings.set('CFBundleDevelopmentRegion', language);
@@ -78,19 +78,63 @@ export class ConverterIOS extends ConverterCommon {
         return this;
     }
 
-    private encodeI18nEntries(i18nEntries: I18nEntries): I18nEntries {
-        const encodedI18nEntries: I18nEntries = new Map();
+    // private encodeI18nEntries(i18nEntries: I18nEntries): I18nEntries {
+    //     const encodedI18nEntries: I18nEntries = new Map();
+    //     i18nEntries.forEach((value, key) => {
+    //         const encodedKey = key;
+    //         const encodedValue = encodeValue(value);
+    //         encodedI18nEntries.set(encodedKey, encodedValue);
+    //     });
+    //     return encodedI18nEntries;
+    // }
+
+    private encodeI18nEntries(i18nEntries: I18nEntries, encodedI18nEntries:I18nEntries = new Map()): I18nEntries {
+        const projectData = this.projectData;
+        const appId = projectData.nsConfig.id as string;
         i18nEntries.forEach((value, key) => {
-            const encodedKey = key;
+            let encodedKey = key;
+            if (encodedKey.startsWith('$' + appId)) {
+                encodedKey = encodedKey.substring(appId.length + 2);
+            } else if (encodedKey.startsWith('$')) {
+                return;
+            }
             const encodedValue = encodeValue(value);
-            encodedI18nEntries.set(encodedKey, encodedValue);
+            if (encodedKey.startsWith('android.strings.')) {
+                /* do nothing */
+            } else if (encodedKey === 'app.name') {
+                encodedI18nEntries.set('ios.info.plist.CFBundleDisplayName', encodedValue);
+            } else {
+                encodedI18nEntries.set(encodedKey, encodedValue);
+            }
         });
         return encodedI18nEntries;
     }
 
+    // private encodeI18nEntries(i18nEntries: I18nEntries, encodedI18nEntries:I18nEntries = new Map(), prefix:string = ''): I18nEntries {
+    //     const projectData = this.projectData;
+    //     const appId = projectData.nsConfig.id;
+    //     i18nEntries.forEach((value, key) => {
+    //         const encodedKey = key;
+    //         if (key === appId && typeof value === 'object') {
+    //             this.encodeI18nEntries(value, encodedI18nEntries, prefix);
+    //         } else  if (key.startsWith('android.strings.')) {
+    //             /* do nothing */
+    //         } else if (key === 'app.name') {
+    //             const encodedValue = encodeValue(value as string);
+    //             encodedI18nEntries.set('ios.info.plist.CFBundleDisplayName', encodedValue);
+    //         } else if (typeof value === 'object') {
+    //             this.encodeI18nEntries(value, encodedI18nEntries, prefix + key + '.');
+    //         } else {
+    //             encodedI18nEntries.set(prefix + encodedKey, encodeValue(value as string));
+
+    //         }
+    //     });
+    //     return encodedI18nEntries;
+    // }
+
     private writeStrings(languageResourcesDir: string, resourceFileName: string, i18nEntries: I18nEntries): this {
         let content = '';
-        this.encodeI18nEntries(i18nEntries).forEach((encodedValue, encodedKey) => {
+        i18nEntries.forEach((encodedValue, encodedKey) => {
             if (!encodedKey.startsWith('android.strings.') && !encodedKey.startsWith('ios.info.plist.')) {
                 content += `"${encodedKey}" = "${encodedValue}";\n`;
             }
@@ -106,7 +150,7 @@ export class ConverterIOS extends ConverterCommon {
             this.logger.warn(`'${resourceFilePath}' doesn't exists: unable to set default language`);
             return this;
         }
-        const data = plist.readFileSync(resourceFilePath);
+        const data = plist.readFileSync(resourceFilePath) as any;
         let resourceChanged = false;
         infoPlistValues.forEach((value, key) => {
             if (!data.hasOwnProperty(key) || data[key] !== value) {

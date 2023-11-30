@@ -1,15 +1,18 @@
 import * as fs from 'fs';
+import { IProjectData } from 'nativescript/lib/definitions/project';
 import * as path from 'path';
 
 export class DataProvider {
     public static readonly I18N_DIRECTORY_NAME = 'i18n';
 
-    protected defaultLanguage: string | undefined = undefined;
+    protected defaultLanguage: string;
     protected readonly i18nDirectoryPath: string;
+    protected readonly i18nConfig: any;
     protected languages: Languages = new Map();
 
-    public constructor(protected logger: ILogger, projectData: IProjectData) {
+    public constructor(protected logger: any, projectData: IProjectData) {
         this.i18nDirectoryPath = path.join(projectData.appDirectoryPath, DataProvider.I18N_DIRECTORY_NAME);
+        this.i18nConfig =projectData.nsConfig['i18n'];
         this.load();
     }
 
@@ -38,7 +41,7 @@ export class DataProvider {
             this.logger.warn(`'${this.i18nDirectoryPath}' doesn't exists: nothing to localize`);
             return this;
         }
-
+        this.defaultLanguage = this.i18nConfig?.defaultLang;
         fs.readdirSync(this.i18nDirectoryPath)
             .map((fileName) => path.join(this.i18nDirectoryPath, fileName))
             .filter((filePath) => {
@@ -49,9 +52,12 @@ export class DataProvider {
             })
             .forEach((filePath) => {
                 let language = path.basename(filePath, path.extname(filePath));
-                if (path.extname(language) === '.default') {
+
+                 if (path.extname(language) === '.default') {
                     language = path.basename(language, '.default');
-                    this.defaultLanguage = language;
+                    if (!this.defaultLanguage) {
+                        this.defaultLanguage = language;
+                    }
                 }
                 this.languages.set(language, this.loadLangage(filePath));
             });
@@ -67,26 +73,26 @@ export class DataProvider {
         }
 
         const defaultLanguageI18nEntries = this.languages.get(this.defaultLanguage);
-
-        this.languages.forEach((languageI18nEntries, language) => {
-            if (language !== this.defaultLanguage) {
-                languageI18nEntries.forEach((_, key) => {
-                    if (!defaultLanguageI18nEntries.has(key)) {
-                        defaultLanguageI18nEntries.set(key, key);
-                    }
-                });
-            }
-        });
-
-        this.languages.forEach((languageI18nEntries, language) => {
-            if (language !== this.defaultLanguage) {
-                defaultLanguageI18nEntries.forEach((value, key) => {
-                    if (!languageI18nEntries.has(key)) {
-                        languageI18nEntries.set(key, value);
-                    }
-                });
-            }
-        });
+        if (defaultLanguageI18nEntries) {
+            this.languages.forEach((languageI18nEntries, language) => {
+                if (language !== this.defaultLanguage) {
+                    languageI18nEntries.forEach((_, key) => {
+                        if (!defaultLanguageI18nEntries.has(key)) {
+                            defaultLanguageI18nEntries.set(key, key);
+                        }
+                    });
+                }
+            });
+            this.languages.forEach((languageI18nEntries, language) => {
+                if (language !== this.defaultLanguage) {
+                    defaultLanguageI18nEntries.forEach((value, key) => {
+                        if (!languageI18nEntries.has(key)) {
+                            languageI18nEntries.set(key, value);
+                        }
+                    });
+                }
+            });
+        }
 
         return this;
     }
@@ -99,6 +105,7 @@ export class DataProvider {
         const stack = [{ prefix: '', element: fileContent }];
 
         while (stack.length > 0) {
+            //@ts-ignore
             const { prefix, element } = stack.pop();
             if (Array.isArray(element)) {
                 i18nEntries.set(prefix, element.join(''));
@@ -117,5 +124,5 @@ export class DataProvider {
     }
 }
 
-export type I18nEntries = Map<string, string>;
+export type I18nEntries = Map<string, string | string>;
 export type Languages = Map<string, I18nEntries>;

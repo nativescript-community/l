@@ -4,12 +4,15 @@ import * as path from 'path';
 import { ConverterCommon } from './converter.common';
 import { DataProvider, I18nEntries, Languages } from './data.provider';
 import { encodeValue } from './resource.android';
+import { IProjectData } from 'nativescript/lib/definitions/project';
+import { IPlatformData } from 'nativescript/lib/definitions/platform';
+import { IAndroidResourcesMigrationService } from 'nativescript/lib/declarations';
 
 export class ConverterAndroid extends ConverterCommon {
     public constructor(
         dataProvider: DataProvider,
         androidResourcesMigrationService: IAndroidResourcesMigrationService,
-        logger: ILogger,
+        logger: any,
         platformData: IPlatformData,
         projectData: IProjectData
     ) {
@@ -42,16 +45,20 @@ export class ConverterAndroid extends ConverterCommon {
         );
         this.createDirectoryIfNeeded(languageResourcesDir);
         let strings = '<?xml version="1.0" encoding="utf-8"?>\n<resources>\n';
-        if (isDefaultLanguage) {
-            i18nEntries.forEach((value, key) =>{
-                if (key.startsWith('android.strings.')) {
-                    strings += `  <string name="${key.substr(16)}">${encodeValue(value)}</string>\n`;
-                }
-            });
-        }
+        // if (isDefaultLanguage) {
+        //     i18nEntries.forEach((value, key) =>{
+        //         if (key.startsWith('android.strings.')) {
+        //             strings += `  <string name="${key.substring(16)}">${encodeValue(value)}</string>\n`;
+        //         }
+        //     });
+        // }
         this.encodeI18nEntries(i18nEntries).forEach((encodedValue, encodedKey) => {
+            if (encodedKey.startsWith('android.strings.')) {
+                strings += `  <string name="${encodedKey.substring(16)}">${encodedValue}</string>\n`;
+            } else {
+                strings += `  <string name="${encodedKey}">${encodedValue}</string>\n`;
 
-            strings += `  <string name="${encodedKey}">${encodedValue}</string>\n`;
+            }
         });
         strings += '</resources>\n';
         const resourceFilePath = path.join(languageResourcesDir, 'strings.xml');
@@ -59,17 +66,25 @@ export class ConverterAndroid extends ConverterCommon {
         return this;
     }
 
-    private encodeI18nEntries(i18nEntries: I18nEntries): I18nEntries {
-        const encodedI18nEntries: I18nEntries = new Map();
+    private encodeI18nEntries(i18nEntries: I18nEntries, encodedI18nEntries:I18nEntries = new Map()): I18nEntries {
+        const projectData = this.projectData;
+        const appId = projectData.nsConfig.id as string;
         i18nEntries.forEach((value, key) => {
-            const encodedKey = key;
+            let encodedKey = key;
+            if (encodedKey.startsWith('$' + appId)) {
+                encodedKey = encodedKey.substring(appId.length + 2);
+            } else if (encodedKey.startsWith('$')) {
+                return;
+            }
             const encodedValue = encodeValue(value);
-            if (key.startsWith('android.strings.') || key.startsWith('ios.info.plist.')) {
+            if (encodedKey.startsWith('ios.info.plist.')) {
                 /* do nothing */
-            } else if (key === 'app.name') {
+            } else if (encodedKey === 'app.name') {
                 encodedI18nEntries.set('app_name', encodedValue);
                 encodedI18nEntries.set('title_activity_kimera', encodedValue);
-            } else encodedI18nEntries.set(encodedKey, encodedValue);
+            } else {
+                encodedI18nEntries.set(encodedKey, encodedValue);
+            }
         });
         return encodedI18nEntries;
     }

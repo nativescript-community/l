@@ -2,12 +2,15 @@ import { ConverterCommon } from './converter.common';
 import { ConverterAndroid } from './converter.android';
 import { ConverterIOS } from './converter.ios';
 import { DataProvider } from './data.provider';
+import { IPlatformData, IPlatformsDataService } from 'nativescript/lib/definitions/platform';
+import { IProjectData } from 'nativescript/lib/definitions/project';
+import { IAndroidResourcesMigrationService } from 'nativescript/lib/declarations';
 
 module.exports =  function (
     androidResourcesMigrationService: IAndroidResourcesMigrationService,
-    logger: ILogger,
+    logger: any,
     projectData: IProjectData,
-    injector: IInjector,
+    injector: any,
     hookArgs: any
 ) {
     const platformName = (
@@ -39,12 +42,12 @@ function getPlatformData(
     platformData: IPlatformData,
     projectData: IProjectData,
     platform: string,
-    injector: IInjector
+    injector: any
 ): IPlatformData {
     if (!platformData) {
         // Used in CLI 5.4.x and below:
-        const platformsData = injector.resolve<IPlatformsData>('platformsData');
-        platformData = platformsData.getPlatformData(platform, projectData);
+        const platformsDataService = injector.resolve('platformsData') as IPlatformsDataService;
+        platformData = platformsDataService.getPlatformData(platform, projectData);
     }
 
     return platformData;

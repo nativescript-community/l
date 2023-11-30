@@ -3,6 +3,8 @@ import * as mkdirp from 'mkdirp';
 import * as path from 'path';
 
 import { DataProvider, I18nEntries, Languages } from './data.provider';
+import { IProjectData } from 'nativescript/lib/definitions/project';
+import { IPlatformData } from 'nativescript/lib/definitions/platform';
 
 export abstract class ConverterCommon {
     protected appResourcesDirectoryPath: string;
@@ -12,7 +14,7 @@ export abstract class ConverterCommon {
 
     public constructor(
         protected dataProvider: DataProvider,
-        protected logger: ILogger,
+        protected logger,
         protected platformData: IPlatformData,
         protected projectData: IProjectData
     ) {

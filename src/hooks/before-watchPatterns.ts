@@ -1,3 +1,5 @@
+import { IProjectData } from "nativescript/lib/definitions/project";
+
 module.exports = function (hookArgs: any) {
     if (hookArgs.liveSyncData && !hookArgs.liveSyncData.bundle) {
         return (args, originalMethod) =>
