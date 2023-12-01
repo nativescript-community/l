@@ -66,6 +66,11 @@
         "inject": true
       },
       {
+        "type": "before-syncChangedDataOnDevices",
+        "script": "hooks/before-syncChangedDataOnDevices.js",
+        "inject": true
+      },
+      {
         "type": "before-watchPatterns",
         "script": "hooks/before-watchPatterns.js",
         "inject": true

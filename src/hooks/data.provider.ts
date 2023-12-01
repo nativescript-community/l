@@ -41,7 +41,7 @@ export class DataProvider {
             this.logger.warn(`'${this.i18nDirectoryPath}' doesn't exists: nothing to localize`);
             return this;
         }
-        this.defaultLanguage = this.i18nConfig?.defaultLang;
+        this.defaultLanguage = this.i18nConfig?.defaultLanguage;
         fs.readdirSync(this.i18nDirectoryPath)
             .map((fileName) => path.join(this.i18nDirectoryPath, fileName))
             .filter((filePath) => {

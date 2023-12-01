@@ -13,22 +13,28 @@ module.exports =  function (
     injector: any,
     hookArgs: any
 ) {
-    if (!hookArgs?.filesChangedData) {
+    if (!hookArgs?.data) {
         return;
     }
-    const changedFiles = hookArgs?.filesChangedData?.files;
-    // checking for different from undefined let us know the cli now returns
-    if (changedFiles !== undefined) {
-        let shouldIgnore = true;
-        changedFiles.forEach(changedFile => {
+    // for now we ignore that event.
+    // if we do it then we will update the native files which will cause
+    // a full native app update
+    // seeing l want s to use json for locales first it should be enough
+    // in most case. For edge case a rebuild is needed
+    // return;
+
+    const changedFiles = hookArgs?.data?.files;
+    let shouldIgnore = true;
+    if (changedFiles?.length) {
+            changedFiles.forEach(changedFile => {
             if (/i18n/.test(changedFile)) {
                 shouldIgnore = false;
             }
         })
-        if (shouldIgnore) {
+    }
+    if (shouldIgnore) {
             return;
         }
-    }
     const platformName = (
         (hookArgs && hookArgs.platformData && hookArgs.platformData.normalizedPlatformName) ||
         (hookArgs.checkForChangesOpts && hookArgs.checkForChangesOpts.platform) ||
@@ -50,6 +56,7 @@ module.exports =  function (
         logger.warn(`Platform '${platformName}' isn't supported: skipping localization`);
         return;
     }
+
     converter.run();
 };
 
