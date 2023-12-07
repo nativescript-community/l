@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.1](https://github.com/@nativescript-community/l/compare/v4.3.0...v4.3.1) (2023-12-07)
+
+### Bug Fixes
+
+* for now disable native files update on json change. This makes for a faster dev experience ([840925e](https://github.com/@nativescript-community/l/commit/840925e84c0127df7252b86ce31f779f12239e2a))
+
 # [4.3.0](https://github.com/@nativescript-community/l/compare/v4.2.26...v4.3.0) (2023-12-01)
 
 ### Features
