@@ -21,7 +21,7 @@ module.exports =  function (
     // a full native app update
     // seeing l want s to use json for locales first it should be enough
     // in most case. For edge case a rebuild is needed
-    // return;
+    return;
 
     const changedFiles = hookArgs?.data?.files;
     let shouldIgnore = true;
