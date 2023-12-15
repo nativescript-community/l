@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.2](https://github.com/@nativescript-community/l/compare/v4.3.1...v4.3.2) (2023-12-15)
+
+### Bug Fixes
+
+* hook fix ([a61d813](https://github.com/@nativescript-community/l/commit/a61d813f3ce58f59ba853305ba63315434e56da9))
+
 ## [4.3.1](https://github.com/@nativescript-community/l/compare/v4.3.0...v4.3.1) (2023-12-07)
 
 ### Bug Fixes
