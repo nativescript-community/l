@@ -13,9 +13,6 @@ module.exports =  function (
     injector: any,
     hookArgs: any
 ) {
-    if (!hookArgs?.filesChangedData) {
-        return;
-    }
     const changedFiles = hookArgs?.filesChangedData?.files;
     // checking for different from undefined let us know the cli now returns
     if (changedFiles !== undefined) {
