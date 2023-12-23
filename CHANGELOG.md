@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.3](https://github.com/@nativescript-community/l/compare/v4.3.2...v4.3.3) (2023-12-23)
+
+### Bug Fixes
+
+* **android:** weblate support ([dc8cc25](https://github.com/@nativescript-community/l/commit/dc8cc2583ba1520bf9a403b67f1c7a72e76fc0e3))
+
 ## [4.3.2](https://github.com/@nativescript-community/l/compare/v4.3.1...v4.3.2) (2023-12-15)
 
 ### Bug Fixes
