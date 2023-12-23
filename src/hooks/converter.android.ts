@@ -41,7 +41,7 @@ export class ConverterAndroid extends ConverterCommon {
     protected createLanguageResourcesFiles(language: string, isDefaultLanguage: boolean, i18nEntries: I18nEntries): this {
         const languageResourcesDir = path.join(
             this.appResourcesDirectoryPath,
-            `values${isDefaultLanguage ? '' : `-${language.replace(/^(.+?)-(.+?)$/, '$1-r$2')}`}`
+            `values${isDefaultLanguage ? '' : `-${language.replace('_', '-').replace(/^(.+?)-(.+?)$/, '$1-r$2')}`}`
         );
         this.createDirectoryIfNeeded(languageResourcesDir);
         let strings = '<?xml version="1.0" encoding="utf-8"?>\n<resources>\n';
