@@ -26,7 +26,7 @@ export class ConverterAndroid extends ConverterCommon {
         fs.readdirSync(resourcesDirectory)
             .filter((fileName) => {
                 const match = /^values-(.+)$/.exec(fileName);
-                return match && !languages.has(match[1].replace(/^(.+?)-r(.+?)$/, '$1-$2'));
+                return match && !languages.has(match[1].replace(/^(.+?)-r(.+?)$/, '$1_$2')) && !languages.has(match[1].replace(/^(.+?)-r(.+?)$/, '$1-$2'));
             })
             .map((fileName) => path.join(resourcesDirectory, fileName))
             .filter((filePath) => fs.statSync(filePath).isDirectory())
