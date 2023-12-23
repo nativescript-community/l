@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.4](https://github.com/@nativescript-community/l/compare/v4.3.3...v4.3.4) (2023-12-23)
+
+### Bug Fixes
+
+* **android:** cleanup fix ([8f45443](https://github.com/@nativescript-community/l/commit/8f454433ee7c67bc4df44fc586d056c4fb379568))
+
 ## [4.3.3](https://github.com/@nativescript-community/l/compare/v4.3.2...v4.3.3) (2023-12-23)
 
 ### Bug Fixes
