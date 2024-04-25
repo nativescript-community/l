@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.6](https://github.com/@nativescript-community/l/compare/v4.3.5...v4.3.6) (2024-04-25)
+
+### Bug Fixes
+
+* **android:** support Api level 24  BCP 47 language tags https://developer.android.com/guide/topics/resources/providing-resources.html#AlternativeResources ([92cb0ed](https://github.com/@nativescript-community/l/commit/92cb0edee0a3af460786149da22999a0ee645059))
+
 ## [4.3.5](https://github.com/@nativescript-community/l/compare/v4.3.4...v4.3.5) (2024-03-15)
 
 ### Bug Fixes
