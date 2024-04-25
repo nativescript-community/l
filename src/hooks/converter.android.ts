@@ -26,7 +26,10 @@ export class ConverterAndroid extends ConverterCommon {
         fs.readdirSync(resourcesDirectory)
             .filter((fileName) => {
                 const match = /^values-(.+)$/.exec(fileName);
-                return match && !languages.has(match[1].replace(/^(.+?)-r(.+?)$/, '$1_$2')) && !languages.has(match[1].replace(/^(.+?)-r(.+?)$/, '$1-$2'));
+                if (match) {
+                    var actualLanguage = match[1].replace(/^(.+?)-r(.+?)$/, '$1_$2').replace(/^b\+/, '').split('+').join('_');
+                    return !languages.has(actualLanguage) && !languages.has(match[1].replace(/^(.+?)-r(.+?)$/, '$1-$2'));
+                }
             })
             .map((fileName) => path.join(resourcesDirectory, fileName))
             .filter((filePath) => fs.statSync(filePath).isDirectory())
@@ -39,19 +42,15 @@ export class ConverterAndroid extends ConverterCommon {
     }
 
     protected createLanguageResourcesFiles(language: string, isDefaultLanguage: boolean, i18nEntries: I18nEntries): this {
-        const languageResourcesDir = path.join(
-            this.appResourcesDirectoryPath,
-            `values${isDefaultLanguage ? '' : `-${language.replace('_', '-').replace(/^(.+?)-(.+?)$/, '$1-r$2')}`}`
-        );
+        let languageResourcesDir: string;
+        const languageArray = language.split('_')
+        if (languageArray.length > 1 && (languageArray.length > 2 || languageArray[1].length > 2)) {
+            languageResourcesDir = path.join(this.appResourcesDirectoryPath, "values".concat(isDefaultLanguage ? '' : "-b+" + languageArray.join('+')));
+        } else {
+            languageResourcesDir = path.join(this.appResourcesDirectoryPath, "values".concat(isDefaultLanguage ? '' : "-".concat(languageArray.join('-').replace(/^(.+?)-(.+?)$/, '$1-r$2'))));
+        }
         this.createDirectoryIfNeeded(languageResourcesDir);
         let strings = '<?xml version="1.0" encoding="utf-8"?>\n<resources>\n';
-        // if (isDefaultLanguage) {
-        //     i18nEntries.forEach((value, key) =>{
-        //         if (key.startsWith('android.strings.')) {
-        //             strings += `  <string name="${key.substring(16)}">${encodeValue(value)}</string>\n`;
-        //         }
-        //     });
-        // }
         this.encodeI18nEntries(i18nEntries).forEach((encodedValue, encodedKey) => {
             if (encodedKey.startsWith('android.strings.')) {
                 strings += `  <string name="${encodedKey.substring(16)}">${encodedValue}</string>\n`;
