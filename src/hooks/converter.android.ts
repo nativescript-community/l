@@ -30,6 +30,7 @@ export class ConverterAndroid extends ConverterCommon {
                     var actualLanguage = match[1].replace(/^(.+?)-r(.+?)$/, '$1_$2').replace(/^b\+/, '').split('+').join('_');
                     return !languages.has(actualLanguage) && !languages.has(match[1].replace(/^(.+?)-r(.+?)$/, '$1-$2'));
                 }
+                return false;
             })
             .map((fileName) => path.join(resourcesDirectory, fileName))
             .filter((filePath) => fs.statSync(filePath).isDirectory())
