@@ -67,13 +67,11 @@ export function l(key: string, ...args: any[]): string {
     }
 }
 
-export function titlecase(value) {
-    return value.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1);
-    });
-}
 export function capitalize(value) {
-    return value.charAt(0).toUpperCase() + value.substr(1);
+    return value?.charAt(0).toUpperCase() + value.slice(1);
+}
+export function titlecase(value) {
+    return value?.replace(/\w\S*/g, capitalize);
 }
 export function lt(key: string, ...args: any[]): string {
     return titlecase(l(key, ...args));

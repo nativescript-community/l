@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.5](https://github.com/@nativescript-community/l/compare/v4.3.4...v4.3.5) (2024-03-15)
+
+### Bug Fixes
+
+* handle undefined in titlecase / capitalize ([1d3f822](https://github.com/@nativescript-community/l/commit/1d3f8223d07dec0771f976c00640eb86785c65cd))
+
 ## [4.3.4](https://github.com/@nativescript-community/l/compare/v4.3.3...v4.3.4) (2023-12-23)
 
 ### Bug Fixes

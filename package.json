@@ -45,7 +45,7 @@
         "clean": "rimraf ./plugin/**/*.d.ts ./plugin/**/*.js ./plugin/**/*.js.map plugin/node_modules plugin/package-lock.json",
         "build": " cp README.md plugin/ && npm run tsc && npm run build.hooks && npm run build.angular",
         "build.hooks": " tsc -skipLibCheck -p tsconfig.hooks.json",
-        "build.angular": "ng-packagr -p ./src/angular/ng-package.json -c ./src/angular/tsconfig.json && rm angular/.npmignore",
+        "build.angular": "ng-packagr -p ./src/angular/ng-package.json -c ./src/angular/tsconfig.json",
         "build.android": "bash src-native/android/build.sh",
         "build.ios": "bash src-native/ios/build.sh",
         "build.native": "npm run build.android && npm run build.ios",
