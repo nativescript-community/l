@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.7](https://github.com/@nativescript-community/l/compare/v4.3.6...v4.3.7) (2024-06-19)
+
+**Note:** Version bump only for package @nativescript-community/l
+
 ## [4.3.6](https://github.com/@nativescript-community/l/compare/v4.3.5...v4.3.6) (2024-04-25)
 
 **Note:** Version bump only for package @nativescript-community/l

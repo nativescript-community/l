@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.7](https://github.com/@nativescript-community/l/compare/v4.3.6...v4.3.7) (2024-06-19)
+
+### Bug Fixes
+
+* force write of $app.id keys. (allow to override translations per app) ([dfa7420](https://github.com/@nativescript-community/l/commit/dfa74201846f3668444a60207a4ae300ff1b9022))
+
 ## [4.3.6](https://github.com/@nativescript-community/l/compare/v4.3.5...v4.3.6) (2024-04-25)
 
 ### Bug Fixes
