@@ -93,18 +93,24 @@ export class ConverterIOS extends ConverterCommon {
         const appId = projectData.nsConfig.id as string;
         i18nEntries.forEach((value, key) => {
             let encodedKey = key;
+            let forceWrite = false;
             if (encodedKey.startsWith('$' + appId)) {
                 encodedKey = encodedKey.substring(appId.length + 2);
+                forceWrite = true;
             } else if (encodedKey.startsWith('$')) {
                 return;
             }
             const encodedValue = encodeValue(value);
             if (encodedKey.startsWith('android.strings.')) {
-                /* do nothing */
+               return;
             } else if (encodedKey === 'app.name') {
-                encodedI18nEntries.set('ios.info.plist.CFBundleDisplayName', encodedValue);
+                if (forceWrite || !encodedI18nEntries.has('ios.info.plist.CFBundleDisplayName')) {
+                    encodedI18nEntries.set('ios.info.plist.CFBundleDisplayName', encodedValue);
+                }
             } else {
-                encodedI18nEntries.set(encodedKey, encodedValue);
+                if (forceWrite || !encodedI18nEntries.has(encodedKey)) {
+                    encodedI18nEntries.set(encodedKey, encodedValue);
+                }
             }
         });
         return encodedI18nEntries;

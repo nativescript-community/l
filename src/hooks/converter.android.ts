@@ -69,21 +69,28 @@ export class ConverterAndroid extends ConverterCommon {
     private encodeI18nEntries(i18nEntries: I18nEntries, encodedI18nEntries:I18nEntries = new Map()): I18nEntries {
         const projectData = this.projectData;
         const appId = projectData.nsConfig.id as string;
+       
         i18nEntries.forEach((value, key) => {
             let encodedKey = key;
+            let forceWrite = false;
             if (encodedKey.startsWith('$' + appId)) {
                 encodedKey = encodedKey.substring(appId.length + 2);
+                forceWrite = true;
             } else if (encodedKey.startsWith('$')) {
                 return;
             }
             const encodedValue = encodeValue(value);
             if (encodedKey.startsWith('ios.info.plist.')) {
-                /* do nothing */
+                return
             } else if (encodedKey === 'app.name') {
-                encodedI18nEntries.set('app_name', encodedValue);
-                encodedI18nEntries.set('title_activity_kimera', encodedValue);
+                if (forceWrite || !encodedI18nEntries.has('app_name')) {
+                    encodedI18nEntries.set('app_name', encodedValue);
+                    encodedI18nEntries.set('title_activity_kimera', encodedValue);
+                }
             } else {
-                encodedI18nEntries.set(encodedKey, encodedValue);
+                if (forceWrite || !encodedI18nEntries.has(encodedKey)) {
+                    encodedI18nEntries.set(encodedKey, encodedValue);
+                }
             }
         });
         return encodedI18nEntries;
