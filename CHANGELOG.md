@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.8](https://github.com/@nativescript-community/l/compare/v4.3.7...v4.3.8) (2024-06-24)
+
+### Bug Fixes
+
+* `loadLocaleJSON` now as a `defaultFileOrData` parameter to set a default locale for untranslated strings ([4a50863](https://github.com/@nativescript-community/l/commit/4a508636643787be2da8333adbeca1b39f84c6fb))
+
 ## [4.3.7](https://github.com/@nativescript-community/l/compare/v4.3.6...v4.3.7) (2024-06-19)
 
 ### Bug Fixes
