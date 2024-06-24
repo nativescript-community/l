@@ -21,17 +21,33 @@ function flatten(obj: any) {
     return newObj;
 }
 
-export function loadLocaleJSON(jsonFileOrData: string | object, shouldFlatten = true) {
+export function loadLocaleJSON(jsonFileOrData: string | object, defaultFileOrData: string | object, shouldFlatten = true) {
     if (typeof jsonFileOrData === 'string') {
+        const defaultFileOrDataStr = defaultFileOrData as string;
         if (jsonFileOrData.indexOf('~/') === 0) {
             jsonFileOrData = path.join(knownFolders.currentApp().path, jsonFileOrData.replace('~/', ''));
+        }
+        if (defaultFileOrData && defaultFileOrDataStr.indexOf('~/') === 0) {
+            defaultFileOrData = path.join(knownFolders.currentApp().path, defaultFileOrDataStr.replace('~/', ''));
         }
         if (!/.(json|zip)$/.test(jsonFileOrData)) {
             jsonFileOrData += '.json';
         }
-        currentLocales = JSON.parse(File.fromPath(jsonFileOrData).readTextSync());
+        if (defaultFileOrData && !/.(json|zip)$/.test(defaultFileOrDataStr)) {
+            defaultFileOrData += '.json';
+        }
+        if (defaultFileOrData && defaultFileOrData !== jsonFileOrData) { 
+            currentLocales = Object.assign(JSON.parse(File.fromPath(defaultFileOrDataStr).readTextSync()), JSON.parse(File.fromPath(jsonFileOrData).readTextSync()));
+        } else {
+            currentLocales = JSON.parse(File.fromPath(jsonFileOrData).readTextSync());
+
+        }
     } else if (typeof jsonFileOrData === 'object') {
-        currentLocales = jsonFileOrData;
+        if (defaultFileOrData) {
+            currentLocales = Object.assign(defaultFileOrData, jsonFileOrData);
+        } else {
+            currentLocales = jsonFileOrData;
+        }
     }
     if (shouldFlatten && currentLocales) {
         currentLocales = flatten(currentLocales);
