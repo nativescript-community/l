@@ -1,7 +1,7 @@
 {
   "name": "@nativescript-community/l",
   "description": "Native internationalization plugin for NativeScript using native capabilities of each platform",
-  "version": "4.3.8",
+  "version": "4.3.9",
   "sideEffects": false,
   "keywords": [
     "nativescript",
@@ -76,5 +76,6 @@
         "inject": true
       }
     ]
-  }
+  },
+  "gitHead": "311632f9a8151f80e1626c0d713bc3514bc24921"
 }
