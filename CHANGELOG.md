@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.10](https://github.com/@nativescript-community/l/compare/v4.3.9...v4.3.10) (2024-06-24)
+
+### Bug Fixes
+
+* broken default localization ([8b149bd](https://github.com/@nativescript-community/l/commit/8b149bdf72afd73af8659d80d87b5a8459fbdf4b))
+
 ## [4.3.9](https://github.com/@nativescript-community/l/compare/v4.3.8...v4.3.9) (2024-06-24)
 
 **Note:** Version bump only for package @nativescript-community/l
