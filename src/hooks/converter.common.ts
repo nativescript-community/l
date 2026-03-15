@@ -27,34 +27,14 @@ export abstract class ConverterCommon {
 
     protected abstract cleanObsoleteResourcesFiles(resourcesDirectory: string, languages: Languages): this;
 
-    protected abstract createLanguageResourcesFiles(
-        language: string,
-        isDefaultLanguage: boolean,
-        i18nEntries: I18nEntries,
-        defaultLanguageEntries?: I18nEntries
-    ): this;
+    protected abstract createLanguageResourcesFiles(language: string, isDefaultLanguage: boolean, i18nEntries: I18nEntries): this;
 
     public run(): this {
-        const languages = this.dataProvider.getLanguages();
-        const defaultLanguage = this.dataProvider.getDefaultLanguage();
-        const defaultEntries = defaultLanguage? languages.get(defaultLanguage) : undefined;
-
-        // create files for default language first (if present)
-        if (defaultEntries) {
-            this.createLanguageResourcesFiles(defaultLanguage as string, true, defaultEntries, defaultEntries);
-        }
-
-        // then create files for all other languages, passing default entries so
-        // localized info.plist values can fall back to defaults when missing
-        languages.forEach((languageI18nEntries, language) => {
-            if (language === defaultLanguage) {
-                return;
-            }
-            this.createLanguageResourcesFiles(language, false, languageI18nEntries, defaultEntries);
+        this.dataProvider.getLanguages().forEach((languageI18nEntries, language) => {
+            this.createLanguageResourcesFiles(language, language === this.dataProvider.getDefaultLanguage(), languageI18nEntries);
         });
-
         if (fs.existsSync(this.appResourcesDirectoryPath) && fs.statSync(this.appResourcesDirectoryPath).isDirectory()) {
-            this.cleanObsoleteResourcesFiles(this.appResourcesDirectoryPath, languages);
+            this.cleanObsoleteResourcesFiles(this.appResourcesDirectoryPath, this.dataProvider.getLanguages());
         }
         return this;
     }

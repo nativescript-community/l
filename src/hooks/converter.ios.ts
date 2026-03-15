@@ -43,9 +43,8 @@ export class ConverterIOS extends ConverterCommon {
         return this;
     }
 
-    protected createLanguageResourcesFiles(language: string, isDefaultLanguage: boolean, i18nEntries: I18nEntries,
-        defaultLanguageEntries?: I18nEntries): this {
-        const infoPlistStrings: I18nEntries = new Map(defaultLanguageEntries);
+    protected createLanguageResourcesFiles(language: string, isDefaultLanguage: boolean, i18nEntries: I18nEntries): this {
+        const infoPlistStrings: I18nEntries = new Map();
         const projectData = this.projectData;
         const appId = projectData.nsConfig.id;
         const encodedEntries = this.encodeI18nEntries(i18nEntries);
