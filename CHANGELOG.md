@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.11](https://github.com/@nativescript-community/l/compare/v4.3.10...v4.3.11) (2026-03-22)
+
+### Bug Fixes
+
+* added getCurrentLocales function to retrieve locales ([d589a96](https://github.com/@nativescript-community/l/commit/d589a964b88eb73e1b5d7a5abd8bd4b0b4220096))
+
 ## [4.3.10](https://github.com/@nativescript-community/l/compare/v4.3.9...v4.3.10) (2024-06-24)
 
 ### Bug Fixes
