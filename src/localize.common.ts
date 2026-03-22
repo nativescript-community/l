@@ -6,6 +6,10 @@ export * from './localizenative';
 
 let currentLocales;
 
+export function getCurrentLocales() {
+    return currentLocales;
+}
+
 function flatten(obj: any) {
     const newObj: any = {};
     for (const key of Object.keys(obj)) {
